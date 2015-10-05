@@ -28,7 +28,6 @@ class Game
     @num_unique_letters = @random_word.each_char.to_a.uniq.length
     @max_guesses = @num_unique_letters + 3
     @num_guess = @max_guesses
-    puts @random_word
   end
 
   # the guess method determines if there's a match between the guess and the unsolved_array
@@ -39,7 +38,9 @@ class Game
   def guess(guess)
     @guess_history.push(guess)
     @num_guess -= 1
-    if @unsolved_array.include?(guess)
+    if guess == @random_word
+      @solved_array = @random_word.each_char.to_a
+    elsif @unsolved_array.include?(guess)
       while @unsolved_array.include?(guess)
         index = @unsolved_array.index(guess)
         @solved_array[index] = @unsolved_array[index]
@@ -50,19 +51,9 @@ class Game
     end
   end
 
-  # this will return true if there are more unique letters left to guess than the num_guesses remaining
-  def not_enough_guesses_left?
-    if @num_unique_letters - (@solved_array.uniq.length - 1) > @num_guess
-      true
-    else
-      false
-    end
-  end
-
-  # a lost game (meaning lost? will return true) is defined by either the number of guesses reaching 0
-  # or there not being enough guesses left to guess all the remaining unique letters
+  # a lost game (meaning lost? will return true) defined the number of guesses reaching 0
   def lost?
-    if @num_guess == 0 || not_enough_guesses_left?
+    if @num_guess == 0
       true
     else
       false
@@ -99,10 +90,12 @@ class Board
       if @game.num_guess == @game.max_guesses
         puts
         puts "You have #{@game.max_guesses} letter guesses to save the fish!"
+        puts "If you think you know the word, you can also type out the word in full."
+        puts "Make sure any word guesses are exactly #{@game.random_word.length} letters long!"
       # otherwise, display this message:
       else
         puts
-        puts "Guess so far: #{@game.guess_history.join(", ")}"
+        puts "Guesses so far: #{@game.guess_history.join(", ")}"
         puts "Guesses remaining: #{@game.num_guess}"
       end
     end
@@ -117,29 +110,13 @@ class Board
       puts "😻  VICTORY! 😻 ".center(line_width)
       puts "**************".center(line_width)
       puts
-    # if the game was lost because num_guesses reached 0, display the first image from IMAGES_OUTCOME
-    # and let the user know the reason they lost was because they ran out of guesses
-    # also display what the answer was
-    elsif @game.num_guess == 0
-      puts IMAGES_OUTCOME[0]
-      puts "***************".center(line_width)
-      puts "😭  GAME OVER 😭 ".center(line_width)
-      puts "***************".center(line_width)
-      puts
-      puts "You ran out of guesses!"
-      puts "Answer: #{@game.random_word.upcase}"
-      puts
-    # if neither of the above conditions are met, the display will be very similar to the scenario in which
-    # the user ran out of guesses.  However, in this scenario num_guess never reached 0.  Instead, the number of
-    # unique characters remaining to be guessed is greater than the num_guess still remaining; so a message explaining
-    # this is diplayed.
+    # if the game was lost, display the first image from IMAGES_OUTCOME and the GAME OVER message
     else
       puts IMAGES_OUTCOME[0]
       puts "***************".center(line_width)
       puts "😭  GAME OVER 😭 ".center(line_width)
       puts "***************".center(line_width)
       puts
-      puts "You don't have enough guesses left to guess the full word!"
       puts "Answer: #{@game.random_word.upcase}"
       puts
     end
@@ -160,8 +137,8 @@ def play_game
     guess = gets.chomp
     # this until loop is for input santization; it will keep prompting the user for input
     # until it receives a single character that is a letter (no numbers or symbols)
-    until guess.length == 1 && guess.gsub(/\W+/, '').length == 1 && guess.to_i.to_s != guess
-      puts "You must guess exactly ONE *LETTER* at a time! Try again:"
+    until (guess.gsub(/\W+/, '').length == 1 || guess.gsub(/\W+/, '').length == game.random_word.length) && guess.to_i.to_s != guess
+      puts "You must either guess ONE *LETTER* or a word with a length of #{game.random_word.length}! Try again:"
       guess = gets.chomp
     end
     # this calls the guess method from the Game class; it sends the user input as the parameter
