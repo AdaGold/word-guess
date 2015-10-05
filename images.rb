@@ -1,4 +1,6 @@
-image_array= ["""
+require 'colorize'
+
+IMAGES_CHASE = ["""
 
                                                                                       /^^^/           /]
                                                                                      /   ]           / ]
@@ -12,7 +14,7 @@ image_array= ["""
                                                                           \\_________\\   \\_____/
                                                                                    \\    \\
                                                                                      \\____\\
-""",
+""".colorize(:green),
 
 """
                                                                              /^^^/           /]
@@ -27,7 +29,7 @@ image_array= ["""
                                                                  \\_________\\   \\_____/
                                                                           \\    \\
                                                                             \\____\\
-""",
+""".colorize(:cyan),
 
 
 """
@@ -43,23 +45,24 @@ image_array= ["""
                                                       \\_________\\   \\_____/
                                                                \\    \\
                                                                  \\____\\
-""",
+""".colorize(:white),
 
 """
+
                                                       /^^^/           /]
                                                      /   ]           / ]
       O                                      _______/    ]___       /  ]
                                             /                \\_____/   /
    O                                      _/   [@]  \\ \\                \\
            ___//_                        /..         | |                ]
-    o     /o )   \\/                       VVVvvv\    | |         _/\\    ]
+    o     /o )   \\/                       VVVvvv\    | |          _/\\    ]
       O<  )___\\\\_/\\                             |               /    \\  ]
                                          AAA^^^^^              /       \\]
                                           \\_________\\   \\_____/
                                                    \\    \\
                                                      \\____\\
 
-""",
+""".colorize(:black).colorize(:background => :white),
 
 """
 
@@ -75,7 +78,7 @@ image_array= ["""
                                   \\_________\\   \\_____/
                                            \\    \\
                                              \\____\\
-""",
+""".colorize(:yellow),
 
 
 """
@@ -92,7 +95,7 @@ image_array= ["""
                           \\_________\\   \\_____/
                                    \\    \\
                                      \\____\\
-""",
+""".colorize(:light_magenta).blink,
 
 """
                                   /^^^/           /]
@@ -108,9 +111,9 @@ image_array= ["""
                                \\    \\
                                  \\____\\
 
-""",
+""".colorize(:red).blink]
 
-"""
+IMAGES_OUTCOME = ["""
 
                                   /^^^/           /]
                                  /   ]           / ]
@@ -118,11 +121,30 @@ image_array= ["""
   MMMMmmm               /                \\_____/   /
           .           _/   [@]  \\ \\                \\
             .        /..         | |                ]
-              .    VVVvvv\\    | |         _/\\    ]
+              .    VVVvvv\\    | |            _/\\    ]
                 .           |               /    \\  ]
                      AAA^^^^^              /       \\]
                       \\_________\\   \\_____/
                                \\    \\
                                  \\____\\
 
-"""]
+""".colorize(:light_black),
+"""
+
+              THANK YOU!
+                  .      ___//_
+                    .   /o )   \\/
+                      . )___\\\\_/\\
+
+
+""".colorize(:light_cyan)]
+
+puts IMAGES_CHASE[0]
+puts IMAGES_CHASE[1]
+puts IMAGES_CHASE[2]
+puts IMAGES_CHASE[3]
+puts IMAGES_CHASE[4]
+puts IMAGES_CHASE[5]
+puts IMAGES_CHASE[6]
+puts IMAGES_OUTCOME[0]
+puts IMAGES_OUTCOME[1]
