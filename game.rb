@@ -16,11 +16,10 @@ attr_accessor :answer, :blanks
     answer_letters = @answer.split('') #this gives us an array of the answer letters
     game_blanks = @blanks
     answer_letters.each_with_index do |letter, i|
-      if letter[i] == guess
+      if letter == guess
         game_blanks[i] = guess
       end
-      puts game_blanks
     end
-
+    print game_blanks.join("")
   end
 end
