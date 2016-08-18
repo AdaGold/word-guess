@@ -6,28 +6,28 @@ class Char_Check
     @char = char
     @attempt = []
     @hidden = ["_", "_", "_", "_", "_", "_", "_", "_"]
-    @secret_word = ["L", "O", "V", "E", "L" "A", "C", "E"]
+    @secret_word = ["L", "O", "V", "E", "L", "A", "C", "E"]
     @letter_placement = []
   end
 
   # This method should receive user input
-  def receive_input(input)
+  def receive_input
     puts "Please enter a letter to guess the secret word!"
     @char = gets.chomp.upcase!
     return @char
   end
 
-  def eval_input (char)
-    @secret_word.each_with_index do |chr, i|
+  def eval_input
+    @secret_word.each_with_index do |char, i|
       if @secret_word.include?(@char)
-        
+        @letter_placement.push(i)
 
-         end
       else
         incorrect
         all_guesses
       end
     end
+
   end
 
   def all_guesses(char)
