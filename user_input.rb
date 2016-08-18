@@ -27,7 +27,15 @@ until /[a-zA-Z]+/.match(user_guess)   #checking for only letter values
   user_guess = gets.chomp.upcase
 end
 first_char = user_guess.chars{|c| c[0]}                  #checking user enters only one character
-puts first_char[0]
+puts "You chose: #{first_char[0]}"
+
+all_guesses = ["R", "E", "C", "A"]
+all_guesses << first_char[0]
+
+puts " Here are your letters so far : #{all_guesses}"
+
+
+
   # until                           #checking user does not enter same character more than once
   #
   #   end
