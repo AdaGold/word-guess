@@ -5,7 +5,9 @@ class Char_Check
   def initialize (char)
     @char = char
     @attempt = []
-    @secret_word = "LOVELACE"
+    @hidden = ["_", "_", "_", "_", "_", "_", "_", "_"]
+    @secret_word = ["L", "O", "V", "E", "L" "A", "C", "E"]
+    @letter_placement = []
   end
 
   # This method should receive user input
@@ -16,10 +18,11 @@ class Char_Check
   end
 
   def eval_input (char)
-    @secret_word.each_char do |chr|
+    @secret_word.each_with_index do |chr, i|
       if @secret_word.include?(@char)
-        correct
-        all_guesses
+        
+
+         end
       else
         incorrect
         all_guesses
@@ -31,12 +34,5 @@ class Char_Check
     @attempt.push(@char)
   end
 
-  def correct
-
-  end
-
-  def incorrect
-
-  end
 
 end
