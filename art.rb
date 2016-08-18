@@ -58,5 +58,3 @@ AAAAAAAA"
 
   end
 end
-
-art = Art.new

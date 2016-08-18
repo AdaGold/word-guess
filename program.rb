@@ -1,7 +1,8 @@
 require_relative 'guess'
 require_relative 'art'
 
-
+guess = Guess.new
+art = Art.new
 # word_letter_array = ["c","o","d","e"] # Thinking we won't need this because .include? words on a simple string
 word = "code"
 
@@ -15,20 +16,25 @@ puts "   __
 AAAAAAAA"
 puts "__ __ __ __\n\n\n\n"
 
-# begin mysterious loop here
-n = 1
+n = 1 #we like this
+5.times do
 print "Guess: "
-guess = gets.chomp.downcase
+user_guess = gets.chomp.downcase
 
-if word.include?(guess)
-  puts "Correct!"
-  #method to populate the art
+
+if word.include?(user_guess)
+  guess.guessing_right
 else
-  puts "Incorrect. The volcano is smoking omniously."
-  wrong_guess_array << guess
-  puts Art.bad_guess(n)
+  wrong_guess_array << user_guess
+  puts guess.guessing_wrong
+  puts art.bad_guess(n)
+n += 1 #we like this
 end
-n += 1 
-#mysterious loops end
+
+guess.check
 
 puts "Wrong letters: #{wrong_guess_array}"
+end #end of times loop
+
+puts guess.wrong_guess_counter
+puts "wrong number count #{n}"
