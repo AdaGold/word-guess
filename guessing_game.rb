@@ -5,6 +5,7 @@ class GuessingGame
     @num_wrong_guess = 7
     @art = "(asci art)"
     @letter_art = ["_", "_", "_", "_", "_"]
+    @wrong_guesses = []
     puts @art
     puts @letter_art[0] + @letter_art[1] + @letter_art[2] + @letter_art[3] + @letter_art[4]
 
@@ -54,10 +55,8 @@ class GuessingGame
   def method #to ask user
     puts "called method"
       puts "Guess a letter!"
-      @guesses = []
       @guess = gets.chomp.to_s.upcase
-      @guesses << @guess
-      @wrong_guesses = []
+
 
       if compare? == true
         #ascii_art (doesnt change stays the same for num_wrong_guess)
