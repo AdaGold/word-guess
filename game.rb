@@ -1,4 +1,5 @@
 class Game
+  attr_reader :outcome
 
   def initialize(word)
     @word = word.upcase
@@ -6,6 +7,7 @@ class Game
     @points = 3
     @current_status = []
     @guessed_letters = []
+    @outcome = nil
 
     (@word.length).times do
       @current_status << "_"
@@ -13,9 +15,11 @@ class Game
   end
 
   def guess
+    puts "What letter do you guess?"
     @guess = gets.chomp.upcase
     @guessed_letters << @guess
     check_letter_guess(@guess)
+    # return @outcome
   end
 
   def check_letter_guess(guess)
@@ -27,6 +31,7 @@ class Game
         match = true
         if @current_status == @word_array
           puts "You guessed it!"
+          @outcome = "win"
           # exit? break?
         end
       end
@@ -35,6 +40,7 @@ class Game
       @points -= 1
       if lose?
         puts "Game over. You didn't guess it :(. The secret word was #{ @word }"
+        @outcome = "lose"
         # exit? break?
       end
     end
@@ -51,4 +57,14 @@ class Game
     @points == 0
   end
 
+end
+
+round = Game.new("hello")
+
+round.print_art
+round.guess
+
+until round.outcome != nil
+  round.print_art
+  round.guess
 end
