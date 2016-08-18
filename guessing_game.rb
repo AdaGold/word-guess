@@ -2,7 +2,7 @@ class GuessingGame
 
   def initialize
     @answer = ["Z", "E", "B", "R", "A"]
-    @num_wrong_guess = 7
+    @num_wrong_guess = 0
     @art = "(asci art)"
     @letter_art = ["_", "_", "_", "_", "_"]
     @wrong_guesses = []
@@ -16,8 +16,24 @@ class GuessingGame
   end
 
   def ascii_art
-
+    if @num_wrong_guess == 0
+      puts "full picture"
+    elsif @num_wrong_guess == 1
+      puts "pic minus 1 balloon"
+    elsif @num_wrong_guess == 2
+      puts "pic minus 2 balloons"
+    elsif @num_wrong_guess == 3
+      puts "pic minus 3 balloons"
+    else
+      puts "pic with all balloons gone"
+    end
   end
+
+
+
+
+
+
 
   def letter_art_change
     if @guess == "Z"
@@ -43,7 +59,7 @@ class GuessingGame
     if check_progress? == false
       puts "Congrats you won!"
       exit
-    elsif @num_wrong_guess == 0
+    elsif @num_wrong_guess == 4
       puts "You Lost."
       exit
     else
@@ -60,16 +76,16 @@ class GuessingGame
 
       if compare? == true
         #ascii_art (doesnt change stays the same for num_wrong_guess)
-        puts "unchanged art"
+        ascii_art
         letter_art_change
         puts @letter_art[0] + @letter_art[1] + @letter_art[2] + @letter_art[3] + @letter_art[4]
         puts "Yay! That is a correct letter."
 
       else
         #ascii_art (changes corresponds to num_wrong_guess, looses balloons)
-        puts "changed art"
+        @num_wrong_guess += 1
+        ascii_art
         puts @letter_art[0] + @letter_art[1] + @letter_art[2] + @letter_art[3] + @letter_art[4]
-        @num_wrong_guess -= 1
         @wrong_guesses << @guess
         puts "Sorry! That letter is wrong. You lost a baloon"
         puts "Here are your wrong guesses so far: " + @wrong_guesses.to_s
