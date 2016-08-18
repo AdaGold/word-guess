@@ -25,7 +25,7 @@ while wrong_guess_array.length < 5
   if word.include?(user_guess)
     right_guess_array << user_guess
     guess.guessing_right
-    word_letter_array[] # two things. pull the index of whichever letter user_guess is, then display user guess
+
   else
     wrong_guess_array << user_guess
     puts guess.guessing_wrong
@@ -33,6 +33,7 @@ while wrong_guess_array.length < 5
     n += 1 #we like this
   end
   guess.check
+   puts "Correct letters: #{word_letter_array & right_guess_array}" #We like this for printing right letters in game
   puts "Wrong letters: #{wrong_guess_array}"
 end
 
