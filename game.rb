@@ -19,25 +19,24 @@ class Game
         answer_letters.each_with_index do |letter, i|
             if letter == guess
                 @blanks[i] = guess
-                counter +=1
             end
         end
 #        if counter == 0
 #            remove_flower
 #        end
-        print @blanks.join("")
+        print @blanks.join("") + "\n\n"
     end
 
     def remove_flower
         @flowers.pop
         print @flowers
-#        if @flowers.length == 0
-#            puts "You ran out of flowers. Game over."
-#            exit
-        end
+       if @flowers.length == 0
+           puts "You ran out of flowers. Game over."
+           exit
+         end
     end
 
     def full?
-        @blanks == @answer
+        @blanks.join("") == @answer
     end
 end
