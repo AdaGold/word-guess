@@ -15,15 +15,28 @@ class Char_Check
     return @char
   end
 
-  def eval_input (input)
-    @secret.each_char { |chr|}
-      if @secret_word.include?(chr)
-
+  def eval_input (char)
+    @secret_word.each_char do |chr|
+      if @secret_word.include?(@char)
+        correct
+        all_guesses
+      else
+        incorrect
+        all_guesses
       end
+    end
+  end
+
+  def all_guesses(char)
+    @attempt.push(@char)
   end
 
   def correct
-    @char
+
+  end
+
+  def incorrect
+
   end
 
 end
