@@ -1,3 +1,5 @@
+require 'awesome_print'
+
 class Game
     attr_accessor :answer, :blanks
 
@@ -6,6 +8,7 @@ class Game
         @blanks = []
         @flowers = ["(@)", "(@)", "(@)", "(@)", "(@)"]
         get_blanks
+        status
     end
 
     def get_blanks
@@ -21,22 +24,25 @@ class Game
                 @blanks[i] = guess
             end
         end
-#        if counter == 0
-#            remove_flower
-#        end
-        print @blanks.join("") + "\n\n"
+        status
     end
 
     def remove_flower
-        @flowers.pop
-        print @flowers
-       if @flowers.length == 0
-           puts "You ran out of flowers. Game over."
-           exit
-         end
+      @flowers.pop
+      status
+      if @flowers.length == 0
+        puts "You ran out of flowers. Game over."
+        exit
+      end
     end
 
     def full?
         @blanks.join("") == @answer
+    end
+
+    def status
+      puts @flowers.join("")
+      puts "`| `| `| `| `|"
+      print @blanks.join("") + "\n\n"
     end
 end

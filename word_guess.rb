@@ -1,9 +1,11 @@
 require_relative 'game'
 
-words = ["popcorn"]
+words = ["popcorn", "licorice", "marshmallow", "spaghetti", "meatloaf"]
 
-word = Game.new(words[0])
-
+puts ""
+puts ""
+word = Game.new(words.sample)
+puts "Welcome to our word guess game!"
 print "Please enter a letter. "
 user_guess = gets.chomp.downcase
 
@@ -12,7 +14,7 @@ until word.full?
     word.fill_in(user_guess)
     if word.full?
       break
-    end 
+    end
     print "Please enter another letter. "
     user_guess = gets.chomp.downcase
   else
