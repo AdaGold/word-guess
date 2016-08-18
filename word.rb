@@ -7,11 +7,10 @@ class Word
     def initialize(letter)
         @screen_output = ['_', '_', '_', '_', '_']
         @letter = letter
-        @index = i
     end
 
-    def replace_dash(guess) # guess is a letter
-        @screen_output[@index].gsub!('_', guess) #s.gsub!
+    def replace_dash(guess, i) # guess is a letter
+        @screen_output[i].gsub!('_', guess) #s.gsub!
         print "word: " + @screen_output.to_s
     end
 end
