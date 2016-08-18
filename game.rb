@@ -1,5 +1,3 @@
-require 'awesome_print'
-
 class Game
     attr_accessor :answer, :blanks
 
@@ -43,6 +41,6 @@ class Game
     def status
       puts @flowers.join("")
       puts "`| `| `| `| `|"
-      print @blanks.join("") + "\n\n"
+      print @blanks.join(" ") + "\n\n"
     end
 end
