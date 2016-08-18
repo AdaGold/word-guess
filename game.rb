@@ -1,12 +1,12 @@
 class Game
-  attr_accessor :word, :guessed_word, :remaining_guesses
+  attr_accessor :word, :guessed_word, :remaining_guesses, :wrong_letters
 
   def initialize
     @word = ["panda", "guinevere", "snowcone", "whimsical", "hardcode", "dragon",
     "sunglasses"].sample
     @guessed_word = ["_"] * @word.length
     @remaining_guesses = 5
-    print @guessed_word
+    @wrong_letters = []
     puts "Welcome to word-guess!"
   end
 
@@ -19,7 +19,7 @@ class Game
     end
     if @word.include?(letter) == false
       @remaining_guesses -= 1
-
+      @wrong_letters << letter
     end
 
     return @guessed_word
