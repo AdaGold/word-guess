@@ -1,4 +1,5 @@
 class Image
+attr_reader :image_array
 
   def initialize
     @image_array = ["▄██████████████▄▐█▄▄▄▄█▌",
