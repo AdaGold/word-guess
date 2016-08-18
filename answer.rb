@@ -20,24 +20,24 @@ class Answer #the Answer class stores the word the user is trying guess, and can
     #If we have time to go back, we'll use an .each loop here to keep track of what position the correct guesses are in.
     if @word_array.include?(user_guess)
       #This is calling the correct_guess method and adding the user's guess to the user_correct array.
-      # correct_guess(user_guess)
-      @user_correct << user_guess
-      puts "CORRECT"
+      correct_guess(user_guess)
+      #@user_correct << user_guess
+      #puts "CORRECT"
     else
-      # incorrect_guess(user_guess)
-      @user_incorrect << user_guess
-      puts "INCORRECT"
+      incorrect_guess(user_guess)
+      #@user_incorrect << user_guess
+      #puts "INCORRECT"
     end
   end
 
-  # def correct_guess(letter)
-  #   @user_correct << letter
-  #   puts "YOU'RE CORRECT"
-  # end
-  #
-  # def incorrect_guess(letter)
-  #   @user_incorrect << letter
-  #   puts "YOU FAIL"
-  # end
+  def correct_guess(letter)
+    @user_correct << letter
+    puts "YOU'RE CORRECT"
+  end
+
+  def incorrect_guess(letter)
+    @user_incorrect << letter
+    puts "YOU FAIL"
+  end
 
 end
