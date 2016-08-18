@@ -7,7 +7,7 @@ class Char_Check
     @attempt = []
     @hidden = ["_", "_", "_", "_", "_", "_", "_", "_"]
     @secret_word = ["L", "O", "V", "E", "L", "A", "C", "E"]
-    @letter_placement = []
+    @letter_placement = 0
   end
 
   # This method should receive user input
@@ -18,15 +18,14 @@ class Char_Check
   end
 
   def eval_input
-      if @secret_word.include?(char)
-          @letter_placement.push(@secret_word.index(@char))
-          @letter_placement.each do |i|
-          puts @hidden[i] = @char
-          end
-      else
-        incorrect
-        all_guesses
+      @secret_word.each do |char|
+      while @secret_word.include?(char)
+          @letter_placement = @secret_word.index(@char)
+          @secret_word.delete_at(@letter_placement.to_i)
+          @hidden[@letter_placement.to_i] = @char
       end
+      end
+    return @hidden
   end
 
 
