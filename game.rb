@@ -13,15 +13,20 @@ class Game
 
   def guess
     @guess = gets.chomp.upcase
+    check_letter_guess(@guess)
   end
 
   def check_letter_guess(guess)
+    match = false
     @word_array.each_with_index do |letter, i|
       if letter == guess
-        @current_status[i] = letter # need to figure out how to make this work like we think it should
-      else
-        @points -= 1
+        puts letter + i.to_s
+        @current_status[i] = letter
+        match = true
       end
+    end
+    if match == false
+      @points -= 1
     end
   end
 
