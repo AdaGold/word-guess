@@ -2,7 +2,7 @@
 class Char_Check
   attr_accessor :char
 
-  def initialize (char)
+  def initialize
     @char = char
     @attempt = []
     @hidden = ["_", "_", "_", "_", "_", "_", "_", "_"]
@@ -18,17 +18,17 @@ class Char_Check
   end
 
   def eval_input
-    @secret_word.each_with_index do |char, i|
-      if @secret_word.include?(@char)
-        @letter_placement.push(i)
-
+      if @secret_word.include?(char)
+          @letter_placement.push(@secret_word.index(@char))
+          @letter_placement.each do |i|
+          puts @hidden[i] = @char
+          end
       else
         incorrect
         all_guesses
       end
-    end
-
   end
+
 
   def all_guesses(char)
     @attempt.push(@char)
