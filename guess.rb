@@ -1,4 +1,5 @@
- # require_relative 'art'
+require_relative 'art'
+
 class Guess
   attr_accessor :guessing_right, :guessing_wrong, :check, :wrong_guess_counter
 
@@ -19,16 +20,14 @@ class Guess
   end
 
   def lose?
-    if @wrong_guess_counter > 1
-
-    end
+    @wrong_guess_counter == 4 # NO IFs HERE :)
   end
 
   def check
     if lose? == true
-    puts "You've guessed too many times without getting the word. Village dead."
-    #art.lose #final art for losing should be here
-    exit
+      puts "You've guessed too many times without getting the word. Village dead."
+      # art.lose #final art for losing should be here
+      exit
     end
   end
 #lunch time notes: figure out how to .guessing right in program.rb
