@@ -20,22 +20,19 @@ puts "
 
 puts "Enter one letter: "
 
-user_guess = gets.chomp.upcase
+user_guess = gets.chomp.upcase.to_s
+all_guesses = ["A", "B", "C"]
 
-until /[a-zA-Z]+/.match(user_guess)   #checking for only letter values
-  puts "Invalid. Please enter a letter: "
+until /[A-Z]/.match(user_guess)
+  puts "Invalid. Please enter a new letter: "
   user_guess = gets.chomp.upcase
 end
-first_char = user_guess.chars{|c| c[0]}                  #checking user enters only one character
-puts "You chose: #{first_char[0]}"
 
-all_guesses = ["R", "E", "C", "A"]
-all_guesses << first_char[0]
+until all_guesses.include?(user_guess[0]) == FALSE
+    puts "That's been guessed already. Please enter a new letter."
+    user_guess = gets.chomp.upcase
+end
 
+puts "You chose: #{user_guess[0]}"
+all_guesses << user_guess[0]
 puts " Here are your letters so far : #{all_guesses}"
-
-
-
-  # until                           #checking user does not enter same character more than once
-  #
-  #   end
