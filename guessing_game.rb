@@ -33,9 +33,14 @@ class GuessingGame
 
   end
 
+  def check_progress?
+    @letter_art.include?"_"
+  end
+
+
   def game_over?
-    if @letter_art.exclude?"_"
-      puts "Congrats, you won!!!!"
+    if check_progress? == false
+      puts "Congrats you won!"
       exit
     elsif @num_wrong_guess == 0
       puts "You Lost."
@@ -73,3 +78,5 @@ class GuessingGame
     game_over?
   end
 end
+g = GuessingGame.new
+g.method
