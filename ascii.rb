@@ -1,7 +1,7 @@
 class Ascii
     attr_reader :r1, :r2, :r3, :r4, :r5, :r6
 
-    def intialize
+    def initialize
         @r1 = "(@)(@)(@)(@)(@)"
         @r2 = "  ,\,\,|,/,/,  "
         @r3 = "     _\|/_     "
@@ -11,7 +11,7 @@ class Ascii
     end
 
     def wrong(input) # wrong guess
-        puts @r1.delete[-1]
+        puts @r1.delete[-3..-1] #delete the whole flower. not just the )
         puts @r2
         puts @r3
         puts @r4

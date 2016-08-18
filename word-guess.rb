@@ -1,25 +1,15 @@
+require_relative 'word'
+require_relative 'answer'
+require_relative 'ascii'
 
+max_wrong = 0
 
+answer = Answer.new
 
+#answer.iterate('s')
 
-
-word: _ _ _ _ _ _
-
-answer = ['s', 't', 'u', 'd', 'y']
-number_of_guess = answer.length
-
-
-while number_of_guess < 5
+while max_wrong < 5
     puts "What is your letter guess?"
     guess = gets.chomp
-    answer.each do |letter|
-        if guess == letter
-            puts "You're right!"
-            # fill the blank
-        else
-            puts "You're wrong!"
-            # alter the ACSII art
-        end
-    end
-    number_of_guess -= 1
+    answer.iterate(guess)
 end
