@@ -40,4 +40,7 @@ class Answer #the Answer class stores the word the user is trying guess, and can
     puts "YOU FAIL"
   end
 
+  def num_incorrect
+    return @user_incorrect.length
+  end
 end
