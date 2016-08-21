@@ -1,4 +1,5 @@
 require_relative 'answer'
+require_relative 'ascii'
 
 
 class Word
