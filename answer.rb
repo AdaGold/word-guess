@@ -21,7 +21,7 @@ class Answer
                     puts "Try again, loser!"
                     w = Ascii.new
                     puts guess
-                    w.wrong
+                    w.wrong(max_wrong)
                     guess = gets.chomp
                     max_wrong += 1
                 end

@@ -44,7 +44,7 @@ class Ascii
         # @r6 = "     |___|     "
     end
 
-    def wrong # wrong guess
+    def wrong(max_wrong) # wrong guess
       case max_wrong
       when @max_wrong == 0
         puts @r1
