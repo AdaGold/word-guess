@@ -23,18 +23,20 @@ class Game
 # takes a guess from user and checks it
   def guess
     until @valid
-      print "\nWhat letter do you guess? "
+      print "\nMake a guess: "
       @guess = gets.chomp.upcase
 
 # check if guess is word or letter
       if @guess.length > 1
-        @guessed_words << @guess
-        check_word_guess
-        @valid = true
+        if valid_word?
+          @guessed_words << @guess
+          check_word_guess
+        end
       else
-        valid_letter? # validates input
-        @guessed_letters << @guess
-        check_letter_guess(@guess)
+        if valid_letter? # validates input
+          @guessed_letters << @guess
+          check_letter_guess(@guess)
+        end
       end
     end
     @valid = false
@@ -47,6 +49,16 @@ class Game
     else
       print "That's not a valid letter or you've already guessed this one. "
       @valid = false
+    end
+  end
+
+  # checks that guessed word hasn't already been guessed
+  def valid_word?
+    if @guessed_words.include? @guess
+      print "You've already guessed that one. Guess again."
+      @valid = false
+    else
+      @valid = true
     end
   end
 
