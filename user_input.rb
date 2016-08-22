@@ -1,6 +1,6 @@
 require_relative 'word_game'
 
-new_game = WordGame.new()
+# new_game = WordGame.new()
 
 
 puts "Welcome to Word Guess Game!"
@@ -11,19 +11,24 @@ puts "The rules are as follows:
       If all your petals are gone, you lose
       If you guess all correct letters in Word you win!!!"
 
+chances = 5
+flower = "(@)"
 
-puts "
-(@)(@)(@)(@)(@)
-  ,\,\,|,/,/,
+
+bouquet = '
+ \, \, |, /, /
      _\|/_
     |_____|
      |   |
      |___|
-"
+'
+print flower * chances
+print bouquet
+
 cat = ["C", "A", "T"]
 word = cat
+
 runtime = word.length + chances
-chances = 5
 all_guesses = []
 runtime.times do
   if chances == 0
@@ -47,10 +52,13 @@ runtime.times do
   puts "You chose: #{user_guess[0]}"
   all_guesses << user_guess[0]
   puts "\n\nHere are your letters so far : #{all_guesses}\n\n"
-
   if cat.include?(user_guess) == FALSE
       chances -= 1
       puts "THAT IS INCORRECT. You lose a petal!\n\n"
+      puts chances
+      puts flower * chances
+
+
       if chances == 0
         puts "\n\nYOU RAN OUT OF PETALS. YOU LOSE THE GAME\n\n\n"
       end
