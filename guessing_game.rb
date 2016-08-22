@@ -1,23 +1,24 @@
 require 'colorize'
 class GuessingGame
 
-#WORDS LIKE DIZZY DON'T WORK. OR WORDS THAT HAVE TWO OF THE SAME LETTER
   def initialize
-    @rand_answer = ["ZEBRA", "ROCKS", "JUMBO", "RHINO"].sample
+    @rand_answer = ["ZEBRA", "DIZZY", "JUMBO", "RHINOS"].sample
     puts @rand_answer
     @answer = @rand_answer.chars
-    #puts @answer[0] + @answer[1] + @answer[2] + @answer[3] + @answer[4]
-    #puts @answer
     @num_wrong_guess = 0
     @art = "(asci art)"
-    @letter_art = ["_", "_", "_", "_", "_"]
+    @letter_art = Array.new(@rand_answer.length, "_")
     @wrong_guesses = []
-    puts @art
 
-    @letter_art.each_with_index do | i |
+    puts @art
+    ### FIND A WAY TO PRINT OUT @LETTER_ART IN A HORIZONTAL LINE. once you do this replace it below in method as well
+
+
+    @letter_art.each do | i |
       print i
     end
     puts " "
+
     puts " "
 
   end
@@ -41,11 +42,8 @@ class GuessingGame
   end
 
 
-
-
-
   def letter_art_change
-  num_of_letters = @letter_art.length
+  num_of_letters = @answer.length
     num_of_letters.times do |i|
       if @guess == @answer[i]
         @letter_art[i] = @answer[i]
@@ -62,9 +60,11 @@ class GuessingGame
 
   def game_over?
     if check_progress? == false
+      puts " "
       puts "Congrats you won!".colorize(:green)
       exit
     elsif @num_wrong_guess == 4
+      puts " "
       puts "You Lost.".colorize(:red)
       puts "The correct word was: " + @rand_answer.colorize(:red)
       exit
@@ -75,6 +75,7 @@ class GuessingGame
 
 
   def method #to ask user
+      puts " "
       puts "Guess a letter!"
       @guess = gets.chomp.to_s.upcase
 
@@ -83,15 +84,23 @@ class GuessingGame
         #ascii_art (doesnt change stays the same for num_wrong_guess)
         ascii_art
         letter_art_change
-        puts @letter_art[0] + @letter_art[1] + @letter_art[2] + @letter_art[3] + @letter_art[4]
+        @letter_art.each do | i |
+          print i
+        end
+        puts " "
+        puts " "
         puts "Yay! That is a correct letter."
 
       else
         #ascii_art (changes corresponds to num_wrong_guess, looses balloons)
         @num_wrong_guess += 1
         ascii_art
-        puts @letter_art[0] + @letter_art[1] + @letter_art[2] + @letter_art[3] + @letter_art[4]
+        @letter_art.each do | i |
+          print i
+        end
         @wrong_guesses << @guess
+        puts " "
+        puts " "
         puts "Sorry! That letter is wrong. You lost a baloon"
         puts "Here are your wrong guesses so far: " + @wrong_guesses.to_s
       end
