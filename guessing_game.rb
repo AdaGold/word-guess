@@ -1,4 +1,5 @@
 require 'colorize'
+require_relative 'flower'
 class GuessingGame
 
   def initialize
@@ -6,7 +7,7 @@ class GuessingGame
     puts @rand_answer
     @answer = @rand_answer.chars
     @num_wrong_guess = 0
-    @art = "(asci art)"
+    @art = flower.print_props(0)
     @letter_art = Array.new(@rand_answer.length, "_")
     @wrong_guesses = []
 
@@ -106,6 +107,52 @@ class GuessingGame
       end
     game_over?
   end
+
+  flowers = [
+   " @       @     @
+     \\ @  /  @  /
+      \\| /   | /
+     --------------
+    \\            /
+    \\___________/   ",
+
+    "        @     @
+      \\ @  /  @  /
+       \\| /   | /
+      --------------
+     \\            /
+     \\___________/ " ,
+
+     "        @     @
+       \\    /  @  /
+        \\| /   | /
+       --------------
+      \\            /
+      \\___________/ " ,
+
+      "              @
+       \\     /  @  /
+         \\| /   | /
+        --------------
+       \\            /
+       \\___________/ " ,
+
+       "              @
+         \\    /     /
+          \\| /   | /
+         --------------
+        \\            /
+        \\___________/ " ,
+
+        "
+          \\    /     /
+           \\| /   | /
+          --------------
+         \\            /
+         \\___________/ "
+
+  ]
 end
+
 g = GuessingGame.new
 g.method
