@@ -1,6 +1,8 @@
+require "colorize"
+
 class Volcano
 
-# add to game directions: try to guess the correct letters of the secret word before the volcano erupts! 
+# add to game directions: try to guess the correct letters of the secret word before the volcano erupts!
 
   def initialize(score)
     # use case or if statement to return appropriate image
@@ -24,49 +26,111 @@ class Volcano
   puts "             /         \\"
   puts "            /           \\"
   puts "          /               \\"
-  puts "         /AAAAAAAAAAAAAAAAA\\"
-  puts "        /AAAAAAAAAAAAAAAAAAA\\"
+  print "         /"
+  print "AAAAAAAAAAAAAAAAA".colorize(:red)
+  puts "\\"
+  print "        /"
+  print "AAAAAAAAAAAAAAAAAAA".colorize(:red)
+  puts "\\"
 
   puts "\n                /vvv\\"
   puts "               /     \\"
   puts "              /       \\"
   puts "             /         \\"
-  puts "            /AAAAAAAAAAA\\"
-  puts "          /AAAAAAAAAAAAAAA\\"
-  puts "         /AAAAAAAAAAAAAAAAA\\"
-  puts "        /AAAAAAAAAAAAAAAAAAA\\"
+  print "            /"
+  print "AAAAAAAAAAA".colorize(:light_yellow)
+  puts "\\"
+  print "          /"
+  print "AAAAAAAAAAAAAAA".colorize(:light_yellow)
+  puts "\\"
+  print "         /"
+  print "AAAAAAAAAAAAAAAAA".colorize(:red)
+  puts "\\"
+  print "        /"
+  print "AAAAAAAAAAAAAAAAAAA".colorize(:red)
+  puts "\\"
 
   puts "\n                /vvv\\"
   puts "               /     \\"
-  puts "              /AAAAAAA\\"
-  puts "             /AAAAAAAAA\\"
-  puts "            /AAAAAAAAAAA\\"
-  puts "          /AAAAAAAAAAAAAAA\\"
-  puts "         /AAAAAAAAAAAAAAAAA\\"
-  puts "        /AAAAAAAAAAAAAAAAAAA\\"
+  print "              /"
+  print "AAAAAAA".colorize(:light_red)
+  puts "\\"
+  print "             /"
+  print "AAAAAAAAA".colorize(:light_red)
+  puts "\\"
+  print "            /"
+  print "AAAAAAAAAAA".colorize(:light_yellow)
+  puts "\\"
+  print "          /"
+  print "AAAAAAAAAAAAAAA".colorize(:light_yellow)
+  puts "\\"
+  print "         /"
+  print "AAAAAAAAAAAAAAAAA".colorize(:red)
+  puts "\\"
+  print "        /"
+  print "AAAAAAAAAAAAAAAAAAA".colorize(:red)
+  puts "\\"
 
 
-  puts "\n                /AAA\\"
-  puts "               /AAAAA\\"
-  puts "              /AAAAAAA\\"
-  puts "             /AAAAAAAAA\\"
-  puts "            /AAAAAAAAAAA\\"
-  puts "          /AAAAAAAAAAAAAAA\\"
-  puts "         /AAAAAAAAAAAAAAAAA\\"
-  puts "        /AAAAAAAAAAAAAAAAAAA\\"
+  print "\n                /"
+  print "AAA".colorize(:light_red).blink
+  puts "\\"
+  print "               /"
+  print"AAAAA".colorize(:light_yellow).blink
+  puts "\\"
+  print "              /"
+  print "AAAAAAA".colorize(:light_red)
+  puts "\\"
+  print "             /"
+  print "AAAAAAAAA".colorize(:light_red)
+  puts "\\"
+  print "            /"
+  print "AAAAAAAAAAA".colorize(:light_yellow)
+  puts "\\"
+  print "          /"
+  print "AAAAAAAAAAAAAAA".colorize(:light_yellow)
+  puts "\\"
+  print "         /"
+  print "AAAAAAAAAAAAAAAAA".colorize(:red)
+  puts "\\"
+  print "        /"
+  print "AAAAAAAAAAAAAAAAAAA".colorize(:red)
+  puts "\\"
 
   puts "\n                      ooO"
   puts "                     ooOOOo"
   puts "                   oOOOOOOoooo"
-  puts "                 ooOOOooo  oooo"
-  puts "                /AAA\\"
-  puts "               /AAAAA\\"
-  puts "              /AAAAAAA\\"
-  puts "             /AAAAAAAAA\\          AAAAH! RUN FOR YOUR LIVES!"
-  puts "            /AAAAAAAAAAA\\               /"
-  puts "          /AAAAAAAAAAAAAAA\\   	 o           o"
-  puts "         /AAAAAAAAAAAAAAAAA\\    /-    o     /-"
-  puts "        /AAAAAAAAAAAAAAAAAAA\\  /\\   -/-    /\\"
+  print "                 ooOOOooo"
+  puts "  oooo".blink
+  print "\n                /"
+  print "AAA".colorize(:light_red)
+  puts "\\"
+  print "               /"
+  print"AAAAA".colorize(:light_yellow)
+  puts "\\"
+  print "              /"
+  print "AAAAAAA".colorize(:light_red)
+  puts "\\"
+  print "             /"
+  print "AAAAAAAAA".colorize(:light_red)
+  print "\\"
+  puts "          AAAAH! RUN FOR YOUR LIVES!"
+  print "            /"
+  print "AAAAAAAAAAA".colorize(:light_yellow)
+  print "\\"
+  puts "               /"
+  print "          /"
+  print "AAAAAAAAAAAAAAA".colorize(:light_yellow)
+  print "\\"
+  puts "   	 o           o"
+  print "         /"
+  print "AAAAAAAAAAAAAAAAA".colorize(:red)
+  print "\\"
+  puts "    /-    o     /-"
+  print "        /"
+  print "AAAAAAAAAAAAAAAAAAA".colorize(:red)
+  print "\\"
+  puts "  /\\   -/-    /\\"
   puts "                                    /\\"
 
 end
