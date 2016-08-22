@@ -1,23 +1,46 @@
+require 'colorize'
+
 class Guess
-	attr_reader :answer, :r1, :r2, :r3, :r4, :r5, :r6, :chars
+	attr_reader :answer, :anchor, :chars
 
-    def initialize
+	def initialize
 		@answer = "spoon"
-        @chars = []
+		@chars = []
 
-        @answer.split("").each do |c|
-        	if not @chars.include?(c)
-        		@chars << c
-        	end
-        end
+		@answer.split("").each do |c|
+			if not @chars.include?(c)
+				@chars << c
+			end
+		end
 
-        @r1 = "(@)(@)(@)(@)(@)"
-        @r2 = "   ~~~~~~~~~   "
-        @r3 = "     ~~~~~     "
-        @r4 = "    |_____|    "
-        @r5 = "     |   |     "
-        @r6 = "     |___|     "
-
+		@anchor = [
+			"                               ___".colorize(:black),
+			"                              /   \\".colorize(:black),
+			"                             |  o  |".colorize(:black),
+			"                              \\   / ".colorize(:black),
+			"                       ________) (________".colorize(:black),
+			"                      |                   |".colorize(:black),
+			"                      '------.     .------'".colorize(:black),
+			"                              |   | ".colorize(:black),
+			"                              |   | ".colorize(:black),
+			"                              |   | ".colorize(:black),
+			"                              |   | ".colorize(:black),
+			"                   /\\         |   |         /\\ ".colorize(:black),
+			"                  /_ \\        /   \\        / _\\ ".colorize(:black),
+			"                    \\ '.    .'     '.    .' / ".colorize(:black),
+			"                     \\  '--'         '--'  / ".colorize(:black),
+			"                      '.                 .' ".colorize(:black),
+			"                        '._           _.' ".colorize(:black),
+			"                           `'-.   .-'` ".colorize(:black),
+			"                               \\ / ".colorize(:black),
+			"                                ` ".colorize(:black),
+			"~~~~ ~~ ~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~ ~~~~~~~~~~~ ~~~".colorize(:blue),
+			"~     ~~   ~  ~     ~~~~~~~~~~~~~~~~~~~~~~~~~~     ~~     ~~ ~ ".colorize(:blue),
+			"~      ~~    ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~ ".colorize(:blue),
+			"~  ~~     ~       ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~ ".colorize(:blue),
+			"~  ~      ~ ~      ~       ~~ ~~~~~~  ~      ~~  ~             ~~ ".colorize(:blue),
+			"  ~            ~        ~      ~      ~~   ~             ~ ".colorize(:blue)
+		]
 	end
 
 	def display_art(is_correct, max_wrong) # guess; only 1 flower got trimmed
@@ -27,91 +50,162 @@ class Guess
 				puts "CONGRATULATIONS!"
 				exit
 			end
-			puts @r1
-        else
-			# puts @r1[0..-4]
-			# puts @r2
-	        # puts @r3
-	        # puts @r4
-	        # puts @r5
-	        # puts @r6
-			# return @r1
+			puts @anchor
+		else
 			case max_wrong
-				when 1
-					@r1 = @r1[0..-4]
-					puts @r1
-				when 2
-					@r1 = @r1[0..-4]
-					puts @r1
-				when 3
-					@r1 = @r1[0..-4]
-					puts @r1
-				when 4
-					@r1 = @r1[0..-4]
-					puts @r1
-				when 5
-					@r1 = @r1[0..-4]
-					puts @r1
-				else
-					puts "You lose."
-					exit
+			when 0
+				puts @anchor
+			when 1
+				@anchor = [
+					"                               ___".colorize(:black),
+					"                              /   \\".colorize(:black),
+					"                             |  o  |".colorize(:black),
+					"                              \\   / ".colorize(:black),
+					"                       ________) (________".colorize(:black),
+					"                      |                   |".colorize(:black),
+					"                      '------.     .------'".colorize(:black),
+					"                              |   | ".colorize(:black),
+					"                              |   | ".colorize(:black),
+					"                              |   | ".colorize(:black),
+					"                              |   | ".colorize(:black),
+					"                   /\\         |   |         /\\ ".colorize(:black),
+					"                  /_ \\        /   \\        / _\\ ".colorize(:black),
+					"                    \\ '.    .'     '.    .' / ".colorize(:black),
+					"                     \\  '--'         '--'  / ".colorize(:black),
+					"                      '.                 .' ".colorize(:black),
+					"                        '._           _.' ".colorize(:black),
+					"~~~~ ~~ ~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~ ~~~~~~~~~~~ ~~~".colorize(:blue),
+					"~     ~~   ~  ~     ~~~~~~~~~~~~~~~~~~~~~~~~~~     ~~     ~~ ~ ".colorize(:blue),
+					"~      ~~    ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~ ".colorize(:blue),
+					"~  ~~     ~       ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~ ".colorize(:blue),
+					"~  ~      ~ ~      ~       ~~ ~~~~~~  ~      ~~  ~             ~~ ".colorize(:blue),
+					"  ~            ~        ~      ~      ~~   ~             ~ ".colorize(:blue)
+				]
+				puts @anchor
+			when 2
+				@anchor = [
+					"                               ___".colorize(:black),
+					"                              /   \\".colorize(:black),
+					"                             |  o  |".colorize(:black),
+					"                              \\   / ".colorize(:black),
+					"                       ________) (________".colorize(:black),
+					"                      |                   |".colorize(:black),
+					"                      '------.     .------'".colorize(:black),
+					"                              |   | ".colorize(:black),
+					"                              |   | ".colorize(:black),
+					"                              |   | ".colorize(:black),
+					"                              |   | ".colorize(:black),
+					"                   /\\         |   |         /\\ ".colorize(:black),
+					"                  /_ \\        /   \\        / _\\ ".colorize(:black),
+					"~~~~ ~~ ~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~ ~~~~~~~~~~~ ~~~".colorize(:blue),
+					"~     ~~   ~  ~     ~~~~~~~~~~~~~~~~~~~~~~~~~~     ~~     ~~ ~ ".colorize(:blue),
+					"~      ~~    ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~ ".colorize(:blue),
+					"~  ~~     ~       ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~ ".colorize(:blue),
+					"~  ~      ~ ~      ~       ~~ ~~~~~~  ~      ~~  ~             ~~ ".colorize(:blue),
+					"  ~            ~        ~      ~      ~~   ~             ~ ".colorize(:blue)
+				]
+				puts @anchor
+			when 3
+				@anchor = [
+					"                               ___".colorize(:black),
+					"                              /   \\".colorize(:black),
+					"                             |  o  |".colorize(:black),
+					"                              \\   / ".colorize(:black),
+					"                       ________) (________".colorize(:black),
+					"                      |                   |".colorize(:black),
+					"                      '------.     .------'".colorize(:black),
+					"                              |   | ".colorize(:black),
+					"                              |   | ".colorize(:black),
+					"~~~~ ~~ ~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~ ~~~~~~~~~~~ ~~~".colorize(:blue),
+					"~     ~~   ~  ~     ~~~~~~~~~~~~~~~~~~~~~~~~~~     ~~     ~~ ~ ".colorize(:blue),
+					"~      ~~    ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~ ".colorize(:blue),
+					"~  ~~     ~       ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~ ".colorize(:blue),
+					"~  ~      ~ ~      ~       ~~ ~~~~~~  ~      ~~  ~             ~~ ".colorize(:blue),
+					"  ~            ~        ~      ~      ~~   ~             ~ ".colorize(:blue)
+				]
+				puts @anchor
+			when 4
+					@anchor = [
+						"                               ___".colorize(:black),
+						"                              /   \\".colorize(:black),
+						"                             |  o  |".colorize(:black),
+						"                              \\   / ".colorize(:black),
+						"                       ________) (________".colorize(:black),
+						"~~~~ ~~ ~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~ ~~~~~~~~~~~ ~~~".colorize(:blue),
+						"~     ~~   ~  ~     ~~~~~~~~~~~~~~~~~~~~~~~~~~     ~~     ~~ ~ ".colorize(:blue),
+						"~      ~~    ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~ ".colorize(:blue),
+						"~  ~~     ~       ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~ ".colorize(:blue),
+						"~  ~      ~ ~      ~       ~~ ~~~~~~  ~      ~~  ~             ~~ ".colorize(:blue),
+						"  ~            ~        ~      ~      ~~   ~             ~ ".colorize(:blue)
+					]
+					puts @anchor
+			when 5
+				@anchor = [
+					"                               ___".colorize(:black),
+					"                              /   \\".colorize(:black),
+					"~~~~ ~~ ~~~~~~~~~~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~  ~~~~~~~ ~~~~~~~~~~~ ~~~".colorize(:blue),
+					"~     ~~   ~  ~     ~~~~~~~~~~~~~~~~~~~~~~~~~~     ~~     ~~ ~ ".colorize(:blue),
+					"~      ~~    ~~ ~~ ~~  ~~~~~~~~~~~~~ ~~~~  ~     ~~~    ~ ~~~  ~ ~ ".colorize(:blue),
+					"~  ~~     ~       ~      ~~~~~~  ~~ ~~~       ~~ ~ ~~  ~~ ~ ".colorize(:blue),
+					"~  ~      ~ ~      ~       ~~ ~~~~~~  ~      ~~  ~             ~~ ".colorize(:blue),
+					"  ~            ~        ~      ~      ~~   ~             ~ ".colorize(:blue)
+				]
+				puts @anchor
+			else
+				puts "You lose."
+				exit
 			end
 		end
-        puts @r2
-        puts @r3
-        puts @r4
-        puts @r5
-        puts @r6
 	end
 
-    def show_word()
-    	output = @answer.clone() #
+	def show_word()
+		output = @answer.clone() #
 
-    	@chars.each do |c|
-    		while output.include?(c)
-    			output.sub!(c, "_")
-    		end
-    	end
+		@chars.each do |c|
+			while output.include?(c)
+				output.sub!(c, "_")
+			end
+		end
 
-    	to_screen = ""
+		to_screen = ""
 
-    	output.split('').each do |c|
-    		to_screen = to_screen + " " + c
-    	end
+		output.split('').each do |c|
+			to_screen = to_screen + " " + c
+		end
 
-    	puts to_screen
-    	return to_screen
-    end
+		puts to_screen
+		return to_screen
+	end
 
-    def play
+	def play
 
-    	show_word()
+		show_word()
 		max_wrong = 0
 		display_art(true, max_wrong)
 
-    	while @r1.length > 0 || @chars.length > 0
-    		puts "Please guess a letter"
-    		input = gets.chomp
-    		guess = input[0, 1]
-    		puts guess
+		while @chars.length > 0
+			puts "Please guess a letter"
+			input = gets.chomp
+			guess = input[0, 1]
+			puts guess
 
-    		if @answer.include?(guess) == true
-    			if @chars.include?(guess) == true
-    				puts "Nice! You guessed correctly."
-    				@chars.delete(guess)
-    			else
-    				puts "You've already guess that letter before!"
-    			end
+			if @answer.include?(guess) == true
+				if @chars.include?(guess) == true
+					puts "Nice! You guessed correctly."
+					@chars.delete(guess)
+				else
+					puts "You've already guess that letter before!"
+				end
 
-    			display_art(true, max_wrong)
-    			show_word()
-    		else
-    			puts "Sorry, wrong guess!"
+				display_art(true, max_wrong)
+				show_word()
+			else
+				puts "Sorry, wrong guess!"
 				max_wrong += 1
 				puts max_wrong
 				display_art(false, max_wrong)
-    			show_word()
-    		end
+				show_word()
+			end
 		end
 
 		# if @chars.length > 0
@@ -121,7 +215,7 @@ class Guess
 		# 	puts "CONGRATULATIONS!"
 		# 	exit
 		# end
-    end
+	end
 end
 
 a = Guess.new
