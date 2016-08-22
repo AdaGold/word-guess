@@ -26,38 +26,32 @@ class WordGuess
   end
 
   def guess
-    puts "\n\n" + graphic + "\n\n"
 
-    puts"Here are your incorrect guesses so far... \n"
-    print @incorrect_guesses
-    puts "\n\n"
+    print "\nType your guess: "
     your_guess = gets.chomp.upcase
-
+    puts "\n"
+    puts "*" * 50
+    puts "\n"
     if @target_word_guess.include?(your_guess)
       @correct_guesses<<your_guess
       @target_array_form.each_with_index do |char, index|
-          if your_guess == char
-              @dash_line[index].replace(char)
-          end
+        if your_guess == char
+          @dash_line[index].replace(char)
+        end
       end
+      puts @petal_art
     else
       @incorrect_guesses<<your_guess
-      @petal_art.sub!("(@)", "")
-
-    #   @petal_art.slice!(0,3)
-
-#       To remove the first n characters (destructively):
-# str = "hello world"
-# str.slice!(0, 5) # => "hello"
-# str # => " world"
+      @petal_art.slice!(0,3)
+      puts @petal_art
+      # puts @petal_art.sub!("(@)", "")
     end
+    puts "Here is your target word: "
     print @dash_line
-    print @correct_guesses
     puts "\n"
+    puts"Here are your incorrect guesses so far... \n"
+    print @incorrect_guesses
   end
-
-
-# will need to come back to this method, it's looping in a strange way right now...
 
   def done?
     @target_array_form.each do |let|
@@ -88,6 +82,7 @@ class WordGuess
     end
   end
 end
+
 test = WordGuess.new
 
 puts "Welcome to Guess Our Words!"
@@ -98,10 +93,9 @@ puts "Please guess our word represented below by the dashed line. You can guess 
 print test.create_dash_line
 
 puts "\n\n"
-test.graphic
+puts test.graphic
 
 test.guess
-#test.testing_guesses
 
 test.conclusion
 
