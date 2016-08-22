@@ -9,12 +9,20 @@ class Answer #the Answer class stores the word the user is trying guess, and can
     @user_correct = [] #These might want to live outside of answer.
     @user_incorrect = []
     @user_answer = []
+    @answer_array.length.times do
+      @user_answer << "_"
+    end
   end
 
   # def default_answer
   #   @word = "MORDOR"
   #   @answer_array = @word.split(//) #this is the array created out of word, split on each character.
   # end
+  def print_user_answer
+    @user_answer.each do |character|
+      print character + " "
+    end
+  end
 
   def check_user_guess(user_guess)
     #This method takes in a string character from guess to check whether it exists in the answer_array.
