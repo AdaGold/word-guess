@@ -1,4 +1,6 @@
-# require "word_game"
+require_relative 'word_game'
+
+new_game = WordGame.new()
 
 puts "Welcome to Word Guess Game!"
 puts "The rules are as follows:
@@ -17,22 +19,47 @@ puts "
      |   |
      |___|
 "
+cat = ["C", "A", "T"]
+word = cat
+runtime = word.length + chances
+chances = 5
+all_guesses = []
+runtime.times do
+  if chances == 0
+    exit
+  end
 
-puts "Enter one letter: "
+  puts "Enter one letter: "
 
-user_guess = gets.chomp.upcase.to_s
-all_guesses = ["A", "B", "C"]
+  user_guess = gets.chomp.upcase.to_s
 
-until /[A-Z]/.match(user_guess)
-  puts "Invalid. Please enter a new letter: "
-  user_guess = gets.chomp.upcase
-end
-
-until all_guesses.include?(user_guess[0]) == FALSE
-    puts "That's been guessed already. Please enter a new letter."
+  until /[A-Z]/.match(user_guess)
+    puts "Invalid. Please enter a new letter: "
     user_guess = gets.chomp.upcase
+  end
+
+  until all_guesses.include?(user_guess[0]) == FALSE
+    puts "That's been guessed already. Please enter a new letter.\n\n"
+    user_guess = gets.chomp.upcase
+  end
+
+  puts "You chose: #{user_guess[0]}"
+  all_guesses << user_guess[0]
+  puts "\n\nHere are your letters so far : #{all_guesses}\n\n"
+
+  if cat.include?(user_guess) == FALSE
+      chances -= 1
+      puts "THAT IS INCORRECT. You lose a petal!\n\n"
+      if chances == 0
+        puts "\n\nYOU RAN OUT OF PETALS. YOU LOSE THE GAME\n\n\n"
+      end
+  else
+     puts "YOU GUESSED A CORRECT LETTER!"
+  end
+
+
 end
 
-puts "You chose: #{user_guess[0]}"
-all_guesses << user_guess[0]
-puts " Here are your letters so far : #{all_guesses}"
+
+
+# when wrong increases, chances decreases
