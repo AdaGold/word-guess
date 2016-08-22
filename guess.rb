@@ -1,13 +1,16 @@
 require_relative 'art'
 
 class Guess
-  attr_accessor :guessing_right, :guessing_wrong, :check, :wrong_guess_counter
+  attr_accessor :guessing_right, :guessing_wrong, :check, :wrong_guess_counter, :wrong_guess_array, :right_guess_array, :word_letter_array
 
-  def initialize
-    # @guessing_right = guessing_right
-    # @guessing_wrong = guessing_wrong
+  def initialize#(word)
+    @wrong_guess_array = []
+    @right_guess_array = []
+    @word_letter_array = ["c","o","d","e"]
+      # word.chars.each do |char|
+      #   @word_letter_array << char
+      # end
     @wrong_guess_counter = 0
-
   end
 
   def guessing_right
@@ -19,10 +22,9 @@ class Guess
     @wrong_guess_counter += 1
   end
 
-def win?
-   right_guess_array == word_letter_array
-end
-
+  def win?
+    @right_guess_array == @word_letter_array
+  end
 
   def lose?
     @wrong_guess_counter == 5 # NO IFs HERE :)
@@ -30,12 +32,14 @@ end
 
   def check
     if lose? == true
-      puts "You've guessed too many times without getting the word. Village dead."
+      puts "\nYou've guessed too many times without getting the word. Village dead."
       # art.lose #final art for losing should be here
       exit
     elsif win? == true
-      puts "You Win yay"
+      puts "\nYou Win yay"
       exit
+    else
+      puts "\nKeep trying!"
     end
   end
 #lunch time notes: figure out how to .guessing right in program.rb
