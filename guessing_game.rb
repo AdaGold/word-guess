@@ -3,7 +3,7 @@ require_relative 'flower'
 class GuessingGame
 
   def initialize
-    @rand_answer = ["ZEBRA", "DIZZY", "JUMBO", "RHINOS"].sample
+    @rand_answer = ["ZEBRA", "DIZZY", "JUMBO", "RHINOS", "KITTEN", "DRAGON"].sample
     @answer = @rand_answer.chars
     @num_wrong_guess = 0
     @letter_art = Array.new(@rand_answer.length, "_")
@@ -11,7 +11,6 @@ class GuessingGame
     @wrong_guesses = []
 
     puts @flower_art.print_props(0)
-    ### FIND A WAY TO PRINT OUT @LETTER_ART IN A HORIZONTAL LINE. once you do this replace it below in method as well
 
     puts " "
     @letter_art.each do | i |
@@ -20,12 +19,13 @@ class GuessingGame
     puts " "
 
     puts " "
-
   end
+
 
   def compare?
     @answer.include?@guess
   end
+
 
   def ascii_art
     if @num_wrong_guess == 0
@@ -55,6 +55,7 @@ class GuessingGame
     end
   end
 
+
   def check_progress?
     @letter_art.include?"_"
   end
@@ -83,7 +84,6 @@ class GuessingGame
       puts "Guess a letter!"
       @guess = gets.chomp.to_s.upcase
 
-
       if compare? == true
         #ascii_art (doesnt change stays the same for num_wrong_guess)
         ascii_art
@@ -96,7 +96,7 @@ class GuessingGame
         puts "Yay! That is a correct letter."
 
       else
-        #ascii_art (changes corresponds to num_wrong_guess, looses balloons)
+        #ascii_art (changes corresponds to num_wrong_guess, looses flowers)
         @num_wrong_guess += 1
         ascii_art
         @letter_art.each do | i |
