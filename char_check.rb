@@ -36,11 +36,30 @@ class Char_Check
       wrong_guesses
       puts "Incorrectly guessed letters: #{ @attempt }"
     end
-  return @hidden
+  puts "Secret Word: #{@hidden}"
   end
+
+def winning?
+  @secret_word == @hidden
+end
 
   def wrong_guesses
     @attempt.push(@char)
+  end
+
+  def play_game
+    turn_count = 0
+    until turn_count == 6 || winning? == true
+      receive_input
+      eval_input
+      turn_count += 1
+    end
+     if winning?
+       puts "You won!"
+     else
+       puts "Gross you lost"
+       exit
+     end
   end
 
 end
