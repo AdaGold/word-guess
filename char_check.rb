@@ -1,5 +1,7 @@
 require_relative "art"
 
+# Originally named the class with the intention of separating out ability to play game into its own class
+# Would want to refactor to accomplsh this
 class Char_Check
   attr_accessor :char
   attr_accessor :flower
