@@ -1,20 +1,62 @@
 require 'colorize'
-require_relative 'flower'
 class GuessingGame
 
   def initialize
     @rand_answer = ["ZEBRA", "DIZZY", "JUMBO", "RHINOS"].sample
-    puts @rand_answer
     @answer = @rand_answer.chars
     @num_wrong_guess = 0
-    @art = flower.print_props(0)
     @letter_art = Array.new(@rand_answer.length, "_")
     @wrong_guesses = []
+    @art = [
+      "         @      @     @
+          \\ @  /  @  /
+           \\| /   | /
+         ---------------
+         \\            /
+         \\___________/    ",
 
-    puts @art
+      "                 @     @
+           \\ @  /  @  /
+            \\| /   | /
+          ---------------
+          \\            /
+          \\___________/    ",
+
+
+      "                 @     @
+           \\    /  @  /
+            \\| /   | /
+          ---------------
+          \\            /
+          \\___________/    ",
+
+      "                       @
+           \\    /  @  /
+            \\| /   | /
+          ---------------
+          \\            /
+          \\___________/    ",
+
+      "                       @
+           \\    /     /
+            \\| /   | /
+          ---------------
+          \\            /
+          \\___________/    ",
+
+      "
+           \\    /     /
+            \\| /   | /
+          ---------------
+          \\            /
+          \\___________/    ",
+
+          ]
+
+    puts @art[0]
     ### FIND A WAY TO PRINT OUT @LETTER_ART IN A HORIZONTAL LINE. once you do this replace it below in method as well
 
-
+    puts " "
     @letter_art.each do | i |
       print i
     end
@@ -30,15 +72,17 @@ class GuessingGame
 
   def ascii_art
     if @num_wrong_guess == 0
-      puts "full picture"
+      puts @art[0]
     elsif @num_wrong_guess == 1
-      puts "pic minus 1 balloon"
+      puts @art[1]
     elsif @num_wrong_guess == 2
-      puts "pic minus 2 balloons"
+      puts @art[2]
     elsif @num_wrong_guess == 3
-      puts "pic minus 3 balloons"
+      puts @art[3]
+    elsif @num_wrong_guess == 4
+      puts @art[4]
     else
-      puts "pic with all balloons gone"
+      puts @art[5]
     end
   end
 
@@ -63,11 +107,13 @@ class GuessingGame
     if check_progress? == false
       puts " "
       puts "Congrats you won!".colorize(:green)
+      puts " "
       exit
-    elsif @num_wrong_guess == 4
+    elsif @num_wrong_guess == 5
       puts " "
       puts "You Lost.".colorize(:red)
       puts "The correct word was: " + @rand_answer.colorize(:red)
+      puts " "
       exit
     else
       method
@@ -107,51 +153,6 @@ class GuessingGame
       end
     game_over?
   end
-
-  flowers = [
-   " @       @     @
-     \\ @  /  @  /
-      \\| /   | /
-     --------------
-    \\            /
-    \\___________/   ",
-
-    "        @     @
-      \\ @  /  @  /
-       \\| /   | /
-      --------------
-     \\            /
-     \\___________/ " ,
-
-     "        @     @
-       \\    /  @  /
-        \\| /   | /
-       --------------
-      \\            /
-      \\___________/ " ,
-
-      "              @
-       \\     /  @  /
-         \\| /   | /
-        --------------
-       \\            /
-       \\___________/ " ,
-
-       "              @
-         \\    /     /
-          \\| /   | /
-         --------------
-        \\            /
-        \\___________/ " ,
-
-        "
-          \\    /     /
-           \\| /   | /
-          --------------
-         \\            /
-         \\___________/ "
-
-  ]
 end
 
 g = GuessingGame.new
