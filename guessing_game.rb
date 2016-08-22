@@ -78,11 +78,21 @@ class GuessingGame
     end
   end
 
+  def special_character?
+    @guess.include?("!")||@guess.include?("?")||@guess.include?"(,)"
+
+    #elsif@guess.include?"."
+    #|| @guess.include?"," || @guess.include?"#" || @guess.include?":" || @guess.include?";" || @guess.include?"&"
+  end
+
 
   def method #to ask user
       puts " "
       puts "Guess a letter!"
       @guess = gets.chomp.to_s.upcase
+    if special_character? == true
+       puts "Your guess should only contain a letter!"
+    else
       if @wrong_guesses.include? @guess
         puts "You've already guessed that."
       else
@@ -111,6 +121,7 @@ class GuessingGame
           puts "Here are your wrong guesses so far: " + @wrong_guesses.to_s
         end
       end
+    end
     game_over?
   end
 end
