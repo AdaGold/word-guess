@@ -4,8 +4,8 @@ words = ["popcorn", "licorice", "marshmallow", "spaghetti", "meatloaf"]
 
 puts ""
 puts ""
-word = Game.new(words.sample)
 puts "Welcome to our word guess game!"
+word = Game.new(words.sample)
 print "Please enter a letter. "
 user_guess = gets.chomp.downcase
 
@@ -18,7 +18,7 @@ until word.full?
     print "Please enter another letter. "
     user_guess = gets.chomp.downcase
   else
-    word.remove_flower
+    word.remove_flower(user_guess)
     print "Please enter another letter. "
     user_guess = gets.chomp.downcase
   end
