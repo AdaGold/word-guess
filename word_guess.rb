@@ -1,12 +1,25 @@
 require_relative 'game'
 require 'colorize'
 
-words = ["popcorn", "licorice", "marshmallow", "spaghetti", "meatloaf"]
+words = {
+  "easy" => ["noon", "baseball"],
+  "medium" => ["popcorn", "licorice", "marshmallow", "spaghetti", "meatloaf"],
+  "hard" => ["supercalifragilisticexpialidocious"]
+}
 
 puts ""
 puts ""
 puts "Welcome to our word guess game!"
-word = Game.new(words.sample)
+print "Choose your difficulty level, " + words.keys.join(", ") + ": "
+difficulty = gets.chomp.downcase
+until words.keys.include?(difficulty)
+  print "Invalid entry. Please select easy, medium, or hard. "
+  difficulty = gets.chomp.downcase
+end
+
+play = words[difficulty].sample
+
+word = Game.new(play)
 print "Please enter a letter. "
 user_guess = gets.chomp.downcase
 
@@ -19,7 +32,7 @@ until word.full?
     print "Please enter another letter. "
     user_guess = gets.chomp.downcase
   elsif word.all_letters(user_guess) == false
-    puts "Invalid entry. Please enter a letter."
+    print "Invalid entry. Please enter a letter."
     user_guess = gets.chomp.downcase
   else
     word.remove_flower(user_guess)
