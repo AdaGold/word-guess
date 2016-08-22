@@ -1,7 +1,21 @@
 ##
+require_relative 'levels.rb'
 require_relative 'game.rb'
-game_one = Game.new
 
+puts "Welcome to word-guess!"
+puts "What level would you like to play?"
+puts "'a' = easy"
+puts "'b' = moderate"
+puts "'c' = difficult"
+
+choice = gets.chomp.downcase
+
+until choice == "a" || choice == "b" || choice == "c"
+  puts "Please choose a valid choice."
+  choice = gets.chomp.downcase
+end
+
+game_one = Game.new(choice)
 puts game_one.flowers
 puts game_one.display_progress
 

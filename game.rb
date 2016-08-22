@@ -1,13 +1,13 @@
+require_relative 'levels.rb'
+
 class Game
   attr_accessor :word, :guessed_word, :remaining_guesses, :wrong_letters
 
-  def initialize
-    @word = "panda" #, "guinevere", "snowcone", "whimsical", "hardcode", "dragon",
-    #{}"sunglasses"].sample
+  def initialize(level)
+    @word = Levels.new(level).difficulty
     @guessed_word = ["_"] * @word.length
     @remaining_guesses = 5
     @wrong_letters = []
-    puts "Welcome to word-guess!"
   end
 
   def is_in_word (letter)
