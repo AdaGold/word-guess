@@ -43,7 +43,7 @@ class Guess
 		]
 	end
 
-	def display_art(is_correct, max_wrong) # guess; only 1 flower got trimmed
+	def display_art(is_correct, max_wrong)
 
 		if is_correct == true
 			if @chars.length == 0
@@ -186,14 +186,18 @@ class Guess
 
 		while @chars.length > 0
 			puts "Please guess a letter"
-			input = gets.chomp
+			input = gets.chomp.downcase
+			if input.match(/\W/) || input.match(/\d/)
+				puts "You must input a letter."
+				input = gets.chomp.downcase
+			end
 			guess = input[0, 1]
 			guesses << guess
 			puts guesses
 
 			if @answer.include?(guess) == true
 				if @chars.include?(guess) == true
-					puts "Nice! You guessed correctly."
+					puts "Nice! You guessed correctly. The word was #{@answer}!"
 					@chars.delete(guess)
 				else
 					puts "You've already guess that letter before!"
@@ -208,14 +212,6 @@ class Guess
 				show_word()
 			end
 		end
-
-		# if @chars.length > 0
-		# 	puts "GAME OVER!"
-		# 	exit
-		# else
-		# 	puts "CONGRATULATIONS!"
-		# 	exit
-		# end
 	end
 end
 
