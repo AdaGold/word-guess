@@ -25,11 +25,12 @@ class WordGuess
   end
 
   def guess
+    puts "\n\n" + graphic + "\n\n"
+
+    puts"Here are your incorrect guesses so far... \n"
+    print @incorrect_guesses
+    puts "\n\n"
     your_guess = gets.chomp.upcase
-    # until your_guess.length == 1 && your_guess.include?("A..Z")
-    #   puts "Oops"
-    #   your_guess = gets.chomp.upcase
-    # end
 
     if @target_word_guess.include?(your_guess)
       @correct_guesses<<your_guess
@@ -43,28 +44,39 @@ class WordGuess
     end
     print @dash_line
     print @correct_guesses
+    puts "\n"
   end
 
 
 # will need to come back to this method, it's looping in a strange way right now...
 
-  # def done?
-  #   @target_array_form.each do |let|
-  #     if !@correct_guesses.include?(let)
-  #       return false
-  #     end
-  #   end
-  #   return true
-  # end
+  def done?
+    @target_array_form.each do |let|
+      if !@correct_guesses.include?(let)
+        return false
+      end
+    end
+    return true
+  end
 
   def graphic
-    puts "(@)(@)(@)(@)(@)\n,\\, \\, |,/, /,\n     _\\|/_\n    |_____|\n     |   |\n     |___|"
+    return "(@)(@)(@)(@)(@)\n,\\, \\, |,/, /,\n     _\\|/_\n    |_____|\n     |   |\n     |___|"
   end
 
   def testing_guesses
     puts @correct_guesses
   end
 
+  def conclusion
+    until done? == true || @incorrect_guesses.length == 5
+      guess
+    end
+    if @incorrect_guesses.length == 5
+      puts" Oops you lose, nice try!"
+    elsif done? == true
+      puts "Good job, you win!"
+    end
+  end
 end
 test = WordGuess.new
 
@@ -81,8 +93,11 @@ test.graphic
 test.guess
 #test.testing_guesses
 
-# until test.done? == true
+# until test.done? == true || test.incorrect_guesses.length == 5
 #   test.guess
 # end
-#
+
+test.conclusion
+
+
 # test.testing_guesses
