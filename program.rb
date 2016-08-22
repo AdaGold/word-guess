@@ -1,10 +1,10 @@
 require_relative 'guess'
 require_relative 'art'
 
-guess = Guess.new#("code")
+guess = Guess.new("rubies")
 art = Art.new
 # Thinking we won't need this because .include? words on a simple string
-word = "code"
+#word = "code"
 
 variable = guess.word_letter_array.length
 
@@ -31,7 +31,7 @@ while guess.wrong_guess_array.length < 5
   print "\nGuess: "
   user_guess = gets.chomp.downcase
 
-  if word.include?(user_guess) #stop printing letters at the side?
+  if guess.word_letter_array.include?(user_guess) #stop printing letters at the side?
     # guess.right_guess_array[n-1] = user_guess.downcase
     guess.guessing_right
     guess_index = guess.word_letter_array.index(user_guess)

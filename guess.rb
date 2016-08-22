@@ -3,13 +3,13 @@ require_relative 'art'
 class Guess
   attr_accessor :guessing_right, :guessing_wrong, :check, :wrong_guess_counter, :wrong_guess_array, :right_guess_array, :word_letter_array
 
-  def initialize#(word)
+  def initialize(word)
     @wrong_guess_array = []
     @right_guess_array = []
-    @word_letter_array = ["c","o","d","e"]
-      # word.chars.each do |char|
-      #   @word_letter_array << char
-      # end
+    @word_letter_array = []
+       word.chars.each do |char|
+        @word_letter_array << char
+       end
     @wrong_guess_counter = 0
   end
 
