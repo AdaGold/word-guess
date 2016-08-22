@@ -1,10 +1,13 @@
+require_relative "volcano"
+
 class Game
   attr_reader :outcome
+  attr_reader :word
 
   def initialize(word)
     @word = word.upcase
     @word_array = @word.scan /\w/
-    @points = 3
+    @points = 5
     @current_status = []
     @guessed_letters = []
     @outcome = nil
@@ -15,7 +18,7 @@ class Game
   end
 
   def guess
-    puts "What letter do you guess?"
+    print "\nWhat letter do you guess? "
     @guess = gets.chomp.upcase
     @guessed_letters << @guess
     check_letter_guess(@guess)
@@ -26,11 +29,10 @@ class Game
     match = false
     @word_array.each_with_index do |letter, i|
       if letter == guess
-        puts letter + i.to_s
         @current_status[i] = letter
         match = true
         if @current_status == @word_array
-          puts "You guessed it!"
+          # puts "You guessed it!"
           @outcome = "win"
           # exit? break?
         end
@@ -39,7 +41,7 @@ class Game
     if match == false
       @points -= 1
       if lose?
-        puts "Game over. You didn't guess it :(. The secret word was #{ @word }"
+        # puts "Game over. You didn't guess it :(. The secret word was #{ @word }"
         @outcome = "lose"
         # exit? break?
       end
@@ -47,10 +49,16 @@ class Game
   end
 
   def print_art
-    print @current_status
-    puts "You have #{@points} points left."
-    print "Guessed letters: #{ @guessed_letters }"
-
+    print "MYSTERY WORD: "
+    @current_status.each do |letter|
+      print letter + " "
+    end
+    Volcano.new(@points)
+    puts "You have #{@points} wrong guesses left."
+    print "Guessed letters: "
+    @guessed_letters.each do |letter|
+      print letter + " "
+    end
   end
 
   def lose?
@@ -59,12 +67,20 @@ class Game
 
 end
 
+# creates a new round of the Game, with mystery word
 round = Game.new("hello")
 
+# prints the
 round.print_art
-round.guess
+
 
 until round.outcome != nil
-  round.print_art
   round.guess
+  round.print_art
+end
+
+if round.lose?
+  puts "\nGame over. You didn't guess it :(. The secret word was #{ round.word }"
+else
+  puts "\nYou got it!"
 end
