@@ -1,30 +1,14 @@
-#require_relative 'guess' We aren't using this at the moment. Might not need?
-require_relative 'answer'
-require_relative 'image'
+# require_relative 'guess' #We aren't using this at the moment. Might not need?
+# require_relative 'answer'
+# require_relative 'image'
+require_relative 'game'
 
-fail_whale = Image.new
-aw = Answer.new("MORDOR") #We should probably not put the initalization word here. Options: hardcode it in the initialize method in Answer, or do the optimization of harcoding a list in Answer, and having initialize pick one of the options from that list.
+new_game = Game.new
 
-aw.print_user_answer #This initializes the game board
+new_game.print_initial_game_board
 
-puts "What letter would you like to guess?"
-user_guess = gets.chomp.upcase
+new_game.request_user_guess #Calls the get_user_guess method on the new game.
 
-aw.check_user_guess(user_guess)
+new_game.check_user_guess #Calls the check_user_guess method using the user guess requested above.
 
-wrong_answers = aw.num_incorrect
-
-while wrong_answers < fail_whale.image_array.length #TODO: do while loop will do the loop at least once (don't have to initialize variables outside of loop)
-  fail_whale.print_image(wrong_answers)
-
-  aw.print_guesses #We may want to pull this method out of the answer object
-  aw.print_user_answer
-  puts "What letter would you like to guess?"
-  user_guess = gets.chomp.upcase #We might not need a guess object at all unless we decide to something more than just store users guesses in an array
-  aw.check_user_guess(user_guess)
-  wrong_answers = aw.num_incorrect
-  #checking this will print the last line of the whale before the loop ends
-  if wrong_answers == fail_whale.image_array.length
-    fail_whale.print_image(wrong_answers)
-  end
-end
+new_game.print_game_board #Calls the print_game_board method, which is a loop checking whether the number of wrong answers is less than the image's length. If wrong_answers is less, keep playing. If it's equal, game ends. If user correctly guesses, then game will exit.
