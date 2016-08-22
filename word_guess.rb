@@ -1,5 +1,5 @@
 class WordGuess
-  attr_accessor :words, :target_word_guess, :correct_guesses, :incorrect_guesses, :target_array_form, :dash_line
+  attr_accessor :words, :target_word_guess, :correct_guesses, :incorrect_guesses, :target_array_form, :dash_line, :petal_art
 
   def initialize
     @words =  ["JOY", "SAD", "HAPPY", "FACE"]
@@ -8,6 +8,7 @@ class WordGuess
     @correct_guesses = []
     @incorrect_guesses = []
     @dash_line = nil
+    @petal_art = ""
   end
 
   def selection
@@ -41,6 +42,14 @@ class WordGuess
       end
     else
       @incorrect_guesses<<your_guess
+      @petal_art.sub!("(@)", "")
+
+    #   @petal_art.slice!(0,3)
+
+#       To remove the first n characters (destructively):
+# str = "hello world"
+# str.slice!(0, 5) # => "hello"
+# str # => " world"
     end
     print @dash_line
     print @correct_guesses
@@ -60,7 +69,8 @@ class WordGuess
   end
 
   def graphic
-    return "(@)(@)(@)(@)(@)\n,\\, \\, |,/, /,\n     _\\|/_\n    |_____|\n     |   |\n     |___|"
+    @petal_art = "(@)(@)(@)(@)(@)\n,\\, \\, |,/, /,\n     _\\|/_\n    |_____|\n     |   |\n     |___|"
+    return @petal_art
   end
 
   def testing_guesses
@@ -92,10 +102,6 @@ test.graphic
 
 test.guess
 #test.testing_guesses
-
-# until test.done? == true || test.incorrect_guesses.length == 5
-#   test.guess
-# end
 
 test.conclusion
 
