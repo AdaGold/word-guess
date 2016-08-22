@@ -1,3 +1,5 @@
+require 'colorize'
+
 class Flower
 
   def initialize(buds)
@@ -6,36 +8,36 @@ class Flower
 
   def flower
     puts
-    
+
     case @buds
 
     when 7
-      puts "  (@)   (@)"
-      puts "(@)(@)(@)(@)(@)"
+      puts "  (@)   (@)".colorize(:red)
+      puts "(@)(@)(@)(@)(@)".colorize(:red)
     when 6
-      puts  "  (@)"
-      puts  "(@)(@)(@)(@)(@)"
+      puts  "  (@)".colorize(:red)
+      puts  "(@)(@)(@)(@)(@)".colorize(:red)
     when 5
-      puts  "  (@)"
-      puts  "(@)(@)(@)(@)"
+      puts  "  (@)".colorize(:red)
+      puts  "(@)(@)(@)(@)".colorize(:red)
     when 4
-      puts "(@)(@)(@)(@)"
+      puts "(@)(@)(@)(@)".colorize(:red)
     when 3
-      puts "   (@)(@)(@)"
+      puts "   (@)(@)(@)".colorize(:red)
     when 2
-      puts "   (@)   (@)"
+      puts "   (@)   (@)".colorize(:red)
     when 1
-      puts "   (@)"
+      puts "   (@)".colorize(:red)
     when 0
       puts
     else
       puts "How did this get messed up!?"
     end
 
-    puts '  ,\,\,|,/,/,'
-    puts '     _\|/_'
-    puts '    |_____|'
-    puts '     |   |'
-    puts "     |___|"
+    puts '  ,\,\,|,/,/,'.colorize(:green)
+    puts '     _'.colorize(:magenta) + '\|/'.colorize(:green) + '_'.colorize(:magenta)
+    puts '    |_____|'.colorize(:magenta)
+    puts '     |   |'.colorize(:magenta)
+    puts "     |___|".colorize(:magenta)
   end
 end
