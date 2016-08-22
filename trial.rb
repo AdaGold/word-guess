@@ -182,12 +182,14 @@ class Guess
 		show_word()
 		max_wrong = 0
 		display_art(true, max_wrong)
+		guesses = []
 
 		while @chars.length > 0
 			puts "Please guess a letter"
 			input = gets.chomp
 			guess = input[0, 1]
-			puts guess
+			guesses << guess
+			puts guesses
 
 			if @answer.include?(guess) == true
 				if @chars.include?(guess) == true
@@ -202,7 +204,6 @@ class Guess
 			else
 				puts "Sorry, wrong guess!"
 				max_wrong += 1
-				puts max_wrong
 				display_art(false, max_wrong)
 				show_word()
 			end
