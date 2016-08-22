@@ -1,7 +1,7 @@
 #require_relative 'game_board'
 
 class WordGuess
-  attr_accessor :letter_guess, :countdown, :the_word, :correct_letters_left_count
+  attr_accessor :letter_guess, :countdown, :the_word, :correct_letters_left_count, :bad_letters
 
   def initialize
     the_words = ["KITTENS"] #, "HOT", "TAP"]
@@ -34,12 +34,12 @@ class WordGuess
           @correct_letters_left_count -=1
         end
       end
-      puts "Good letters: " + good_letters_at_index_loc.to_s # #for GameBoard/debugging both
+      # REMOVE puts "Good letters: " + good_letters_at_index_loc.to_s # #for GameBoard/debugging both
       # send game_board.success(letter_guess, )
       return good_letters_at_index_loc
     else
       @bad_letters << @letter_guess
-      puts "Bad letters: " + @bad_letters.to_s # for GameBoard debugging/both
+      # REMOVE puts "Bad letters: " + @bad_letters.to_s # for GameBoard debugging/both
       @countdown -= 1
       return @bad_letters
       # send game_board.fail(letter_guess)

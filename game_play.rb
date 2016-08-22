@@ -28,7 +28,8 @@ class GamePlay
 
   def play_turn(countdown, current_word_count)
     @my_artwork.print_balloons(countdown)
-    @my_game_board.print_dash_line
+    @my_game_board.print_dash_line(@my_word_guess.bad_letters)
+    # @my_game_board.bad_letters
     current_guess = @my_word_guess.word_logic
     @my_game_board.print_game_board(current_guess)
   end
@@ -40,7 +41,9 @@ class GamePlay
       exit
     elsif success_count == 0
       #win!
-      puts "you win the game"
+      @my_game_board.print_dash_line
+      puts "You win the game!"
+      @my_artwork.print_win_graphic
       exit
     else
       puts "Not a winner, what's up?"

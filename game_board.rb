@@ -14,8 +14,8 @@ class GameBoard
   end
 
   def print_game_board(letters) # the good or bad letters arrays
-    puts "You are guessing: #{letters[0][0].to_s}" #for testing
-    puts "Good/bad letters array is: #{ letters }"
+    # REMOVE puts "You are guessing: #{letters[0][0].to_s}" #for testing
+    # REMOVE puts "Good/bad letters array is: #{ letters }"
     return dash_array_logic(letters) # returns dash_line results
   end
 
@@ -38,9 +38,13 @@ class GameBoard
     end
   end
 
-  def print_dash_line
+  def print_dash_line(bad_letter_list)
     print "Word: "
     @dash_array.each { |item| print item + " " }
+    if bad_letter_list.length > 0
+      print "\nBad letters: "
+      bad_letter_list.each { |item| print item + " " }
+    end
     puts
   end
 

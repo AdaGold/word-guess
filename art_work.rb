@@ -21,9 +21,14 @@ class ArtWork
     when 1
       one_b = File.open("one_balloon.txt")
       puts one_b.read
-    when 0
+    when 0 # game over - lose!
       zero_b = File.open("game_over.txt")
       puts zero_b.read
     end
+  end
+
+  def print_win_graphic #TODO add to win sequence
+    win_image = File.open("you_win_graphic.txt")
+    puts win_image.read
   end
 end
