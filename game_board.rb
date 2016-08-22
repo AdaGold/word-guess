@@ -21,13 +21,13 @@ class GameBoard
   def print_game_board(letters) # the good or bad letters arrays
     puts "You are guessing: #{letters[0][0].to_s}" #for testing
     puts "Good/bad letters array is: #{ letters }"
-    dash_array_logic(letters) # returns dash_line results
+    return dash_array_logic(letters) # returns dash_line results
   end
 
   def dash_array_logic(letters)
     if letters[0].is_a?(Array) #good letters, letters.last[0] is the current input
       puts "The letter is correct"
-      update_dash_array(letters)
+      return update_dash_array(letters)
         # replace the string "_ " with letter at index_loc
     elsif letters[0].is_a?(String) #bad letters, letters.last is the current input
       puts "The letter is incorrect"
@@ -37,9 +37,9 @@ class GameBoard
 
     end #dash_lines
 
-  def update_dash_array(good_letters_locs) #array of arrays
-    @good_letters_at_index_loc = good_letters_locs
-    @good_letters_at_index_loc.each do |good_letter_array|
+  def update_dash_array(letters) #array of good letter arrays
+    # @good_letters_at_index_loc = letters
+    letters.each do |good_letter_array|
       @dash_array[good_letter_array[1]] = good_letter_array[0]
     end
   end

@@ -4,7 +4,7 @@ class WordGuess
   attr_accessor :letter_guess, :countdown, :the_word
 
   def initialize
-    the_words = ["CAT", "HOT", "TAP"]
+    the_words = ["KITTENS"] #, "HOT", "TAP"]
     # @TODO add more complicated/longer words
     @the_word = the_words.sample(1)[0]
     @word_by_letter = @the_word.split('')

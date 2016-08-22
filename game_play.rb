@@ -15,21 +15,25 @@ class GamePlay
 
 # @TODO need to incorporate logic for win
   def play_game
-    while @my_word_guess.countdown > 0
-      puts @my_word_guess.countdown.to_s + " turns remaining" # for debugging
-      play_turn
+    countdown = @my_word_guess.countdown
+    while countdown > 0
+      puts countdown.to_s + " turns remaining" # for debugging
+      play_turn(countdown) # calls word_logic so it changes countdown
+      countdown = @my_word_guess.countdown
     end
-    game_over_sequence
+    return game_over_sequence(countdown)
   end
 
-  def play_turn
-    @my_artwork.print_ballons(@my_word_guess.countdown)
+  def play_turn(countdown)
+    @my_artwork.print_ballons(countdown)
     @my_game_board.print_dash_line
-    @my_game_board.print_game_board(@my_word_guess.word_logic)
+    current_guess = @my_word_guess.word_logic
+    @my_game_board.print_game_board(current_guess)
   end
 
-  def game_over_sequence
-    @my_artwork.print_ballons(@my_word_guess.countdown)
+# not used yet
+  def game_over_sequence(countdown)
+    @my_artwork.print_ballons(countdown)
   end
 
 end # GamePlay
