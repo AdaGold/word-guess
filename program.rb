@@ -1,7 +1,7 @@
 require_relative 'guess'
 require_relative 'art'
 
-guess = Guess.new("code")
+guess = Guess.new("zoo")
 
 # Thinking we won't need this because .include? words on a simple string
 #word = "code"
@@ -25,15 +25,24 @@ while guess.wrong_guess_array.length < 5
     print "#{i.upcase}  "
   end
   print "\nGuess a letter: "
-  user_guess = gets.chomp.downcase
+  user_input = gets.chomp.downcase
 
-  if guess.word_letter_array.include?(user_guess) #stop printing letters at the side?
-    guess.guessing_right
-    guess_index = guess.word_letter_array.index(user_guess)
-    guess.right_guess_array[guess_index] = user_guess.downcase
-    guess.check
+  if guess.word_letter_array.include?(user_input)
+    if guess.word_letter_array.count(user_input) > 1
+      a_whole_new_array = []
+      a_whole_new_array = guess.word_letter_array.each_index.select { |i| guess.word_letter_array[i] == user_input } #copied off of stack overflow
+        a_whole_new_array.each do |override|
+          guess.right_guess_array[override] = user_input.downcase
+        end
+      guess.check
+    else #single letter
+      guess.guessing_right
+      guess_index = guess.word_letter_array.index(user_input)
+      guess.right_guess_array[guess_index] = user_input.downcase
+      guess.check
+    end
   else
-    guess.wrong_guess_array << user_guess
+    guess.wrong_guess_array << user_input
     puts "#{guess.guessing_wrong}\n\n"
     guess.check
     n += 1 #we like this
