@@ -1,11 +1,15 @@
+require_relative "art"
+
 class Char_Check
   attr_accessor :char
+  attr_accessor :flower
 
   def initialize
     @char = char
     @attempt = []
     @hidden = ["_", "_", "_", "_"]
     @secret_word = ["L", "O", "V", "E"]
+    @flower = Art.new
   end
 
   def receive_input
@@ -23,6 +27,7 @@ class Char_Check
           letter_placement = @secret_word.index(char)
           @hidden[letter_placement.to_i] = @char
           letter_placement = ' '
+          @flower.show_art
 
           if @attempt.empty?
             puts "There are no incorrectly guessed letters."
@@ -45,9 +50,12 @@ end
 
   def wrong_guesses
     @attempt.push(@char)
+    @flower.remove_petal
+    @flower.show_art
   end
 
   def play_game
+
     turn_count = 0
     until turn_count == 6 || winning? == true
       receive_input
