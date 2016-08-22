@@ -1,15 +1,16 @@
 #require_relative 'game_board'
 
 class WordGuess
-  attr_accessor :letter_guess, :countdown, :the_word
+  attr_accessor :letter_guess, :countdown, :the_word, :correct_letters_left_count
 
   def initialize
     the_words = ["KITTENS"] #, "HOT", "TAP"]
     # @TODO add more complicated/longer words
     @the_word = the_words.sample(1)[0]
+    @correct_letters_left_count = @the_word.length # countdown for success
     @word_by_letter = @the_word.split('')
     @bad_letters = []
-    @countdown = 5
+    @countdown = 5 #countdown for fail
     puts "The word is #{ @the_word }" # for testing
         #  @letters = []
   end
@@ -30,6 +31,7 @@ class WordGuess
       @word_by_letter.each_with_index do |letter, i|
         if letter == @letter_guess
           good_letters_at_index_loc << [letter, i]
+          @correct_letters_left_count -=1
         end
       end
       puts "Good letters: " + good_letters_at_index_loc.to_s # #for GameBoard/debugging both
@@ -39,7 +41,7 @@ class WordGuess
       @bad_letters << @letter_guess
       puts "Bad letters: " + @bad_letters.to_s # for GameBoard debugging/both
       @countdown -= 1
-      return @bad_letters # first forgot this return: caused errors in game_board
+      return @bad_letters
       # send game_board.fail(letter_guess)
       # will change bad_letters
     end

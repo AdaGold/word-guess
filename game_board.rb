@@ -1,8 +1,3 @@
-# # For the dash_lines method that we'd been working on last Thursday: This method
-# # was starting to look specifically like logic for updating the dash_array to me
-# # -- I drafted an update to it below with it renamed to dash_array_logic, & separated
-# # out the updating of the array and printing of the dash_line to separate methods.
-
 # #require 'terminal-table'
 # require_relative 'word_guess'
 # require_relative 'art_work'
@@ -34,8 +29,7 @@ class GameBoard
     else
       puts "There is an error in the letter counting logic"
     end
-
-    end #dash_lines
+  end #dash_array_logic
 
   def update_dash_array(letters) #array of good letter arrays
     # @good_letters_at_index_loc = letters
@@ -49,21 +43,5 @@ class GameBoard
     @dash_array.each { |item| print item + " " }
     puts
   end
-
-# # @TODO -- review usage & update or remove?
-#   def dash_lines(letters)
-#     if letters[0].is_a?(Array) #good letters, letters.last[0] is the current input
-#       puts "The letter is correct"
-#       letters.each do |letter, index_loc|
-#
-#         # replace the string "_ " with letter at index_loc
-#       end #do
-#     elsif letters[0].is_a?(String) #bad letters, letters.last is the current input
-#       puts "The letter is incorrect"
-#     else
-#       puts "There is an error in the letter counting logic"
-#     end
-#
-#   end #dash_lines
 
 end #GameBoard

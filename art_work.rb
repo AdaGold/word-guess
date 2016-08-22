@@ -4,7 +4,7 @@ class ArtWork
 
   end
 
-  def print_ballons(countdown)
+  def print_balloons(countdown)
     case countdown
     when 5
       five_b = File.open("five_balloons.txt")
