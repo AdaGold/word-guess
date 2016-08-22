@@ -11,12 +11,15 @@ print "Please enter a letter. "
 user_guess = gets.chomp.downcase
 
 until word.full?
-  if word.answer.include?(user_guess)
+  if word.answer.include?(user_guess) && word.all_letters(user_guess) == true
     word.fill_in(user_guess)
     if word.full?
       break
     end
     print "Please enter another letter. "
+    user_guess = gets.chomp.downcase
+  elsif word.all_letters(user_guess) == false
+    puts "Invalid entry. Please enter a letter."
     user_guess = gets.chomp.downcase
   else
     word.remove_flower(user_guess)
