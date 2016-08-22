@@ -1,4 +1,5 @@
 require_relative 'levels.rb'
+require_relative 'flower.rb'
 
 class Game
   attr_accessor :word, :guessed_word, :remaining_guesses, :wrong_letters
@@ -6,7 +7,15 @@ class Game
   def initialize(level)
     @word = Levels.new(level).difficulty
     @guessed_word = ["_"] * @word.length
-    @remaining_guesses = 5
+
+      if level == "a"
+        @remaining_guesses = 7
+      elsif level == "b"
+        @remaining_guesses = 6
+      elsif level == "c"
+        @remaining_guesses = 5
+      end
+
     @wrong_letters = []
   end
 
@@ -52,29 +61,7 @@ class Game
   end
 
   def flowers
-    puts
-    case @remaining_guesses
-
-    when 5
-      puts "(@)(@)(@)(@)(@)"
-    when 4
-      puts "(@)(@)(@)(@)"
-    when 3
-      puts "   (@)(@)(@)"
-    when 2
-      puts "   (@)   (@)"
-    when 1
-      puts "   (@)"
-    when 0
-      puts
-    else
-      puts "How did this get messed up!?"
-    end
-
-    puts '  ,\,\,|,/,/,'
-    puts '     _\|/_'
-    puts '    |_____|'
-    puts '     |   |'
-    puts "     |___|"
+    Flower.new(@remaining_guesses).flower
   end
+
 end

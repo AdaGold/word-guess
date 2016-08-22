@@ -22,8 +22,10 @@ puts game_one.display_progress
 while game_one.remaining_guesses > 0
   puts "Guess a letter or guess the word. You must guess the word exactly."
   puts
-
   input = gets.chomp.downcase
+  puts
+  puts
+  puts game_one.flowers
   if input.length == 1
     game_one.is_in_word(input)
     puts game_one.display_progress
@@ -33,7 +35,7 @@ while game_one.remaining_guesses > 0
     puts "Winning word: #{game_one.word}"
   end
 
-  puts game_one.flowers
+  puts
   puts "You have missed:"
   print game_one.wrong_letters
   puts
