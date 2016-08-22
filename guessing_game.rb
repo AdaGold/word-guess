@@ -1,4 +1,5 @@
 require 'colorize'
+require_relative 'flower'
 class GuessingGame
 
   def initialize
@@ -6,54 +7,10 @@ class GuessingGame
     @answer = @rand_answer.chars
     @num_wrong_guess = 0
     @letter_art = Array.new(@rand_answer.length, "_")
+    @flower_art = Flower.new
     @wrong_guesses = []
-    @art = [
-      "         @      @     @
-          \\ @  /  @  /
-           \\| /   | /
-         ---------------
-         \\            /
-         \\___________/    ",
 
-      "                 @     @
-           \\ @  /  @  /
-            \\| /   | /
-          ---------------
-          \\            /
-          \\___________/    ",
-
-
-      "                 @     @
-           \\    /  @  /
-            \\| /   | /
-          ---------------
-          \\            /
-          \\___________/    ",
-
-      "                       @
-           \\    /  @  /
-            \\| /   | /
-          ---------------
-          \\            /
-          \\___________/    ",
-
-      "                       @
-           \\    /     /
-            \\| /   | /
-          ---------------
-          \\            /
-          \\___________/    ",
-
-      "
-           \\    /     /
-            \\| /   | /
-          ---------------
-          \\            /
-          \\___________/    ",
-
-          ]
-
-    puts @art[0]
+    puts @flower_art.print_props(0)
     ### FIND A WAY TO PRINT OUT @LETTER_ART IN A HORIZONTAL LINE. once you do this replace it below in method as well
 
     puts " "
@@ -72,17 +29,17 @@ class GuessingGame
 
   def ascii_art
     if @num_wrong_guess == 0
-      puts @art[0]
+      puts @flower_art.print_props(0)
     elsif @num_wrong_guess == 1
-      puts @art[1]
+      puts @flower_art.print_props(1)
     elsif @num_wrong_guess == 2
-      puts @art[2]
+      puts @flower_art.print_props(2)
     elsif @num_wrong_guess == 3
-      puts @art[3]
+      puts @flower_art.print_props(3)
     elsif @num_wrong_guess == 4
-      puts @art[4]
+      puts @flower_art.print_props(4)
     else
-      puts @art[5]
+      puts @flower_art.print_props(5)
     end
   end
 

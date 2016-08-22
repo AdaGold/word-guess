@@ -52,6 +52,5 @@ class Flower
   end
 end
 
-f = Flower.new
 # puts f.print_props(0)
 # puts f.print_props(1)
