@@ -9,23 +9,33 @@ word = "code"
 wrong_guess_array = []
 right_guess_array = []
 
+variable = word_letter_array.length
+
+variable.to_i.times do
+  right_guess_array << "__  "
+end
+
 puts "\n\n\n\nHere is a volcano. It is about to burn the village unless you can stop it!\nGuess its favorite word to stop the eruption!\n"
 puts "   __
    AA   (I love
   AAAA /  words!)
  AAAAAA
 AAAAAAAA"
-puts "__ __ __ __\n\n\n\n"
+
+right_guess_array.each do |i|
+  print "#{i}"
+end
 
 n = 1 #we like this
 while wrong_guess_array.length < 5
-  print "Guess: "
+  print "\r\rGuess: "
   user_guess = gets.chomp.downcase
 
   if word.include?(user_guess)
     right_guess_array << user_guess
     guess.guessing_right
-    word_letter_array[] # two things. pull the index of whichever letter user_guess is, then display user guess
+    # word_letter_array[] # two things. pull the index of whichever letter user_guess is, then display user guess
+
   else
     wrong_guess_array << user_guess
     puts guess.guessing_wrong
