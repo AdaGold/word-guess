@@ -28,7 +28,7 @@ while guess.wrong_guess_array.length < 5
   user_input = gets.chomp.downcase
 
   if
-  index_array = []
+    index_array = []
     index_array = guess.word_letter_array.each_index.select { |i| guess.word_letter_array[i] == user_input } #copied off of stack overflow
     index_array.each do |override|
         guess.right_guess_array[override] = user_input.downcase
