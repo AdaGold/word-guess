@@ -2,6 +2,7 @@ require_relative 'word_game'
 
 new_game = WordGame.new()
 
+
 puts "Welcome to Word Guess Game!"
 puts "The rules are as follows:
       Enter one letter at a time
