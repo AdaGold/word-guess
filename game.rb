@@ -5,7 +5,7 @@ class Game
     @answer = answer
     @blanks = []
     @wrong = []
-    @flowers = ["(@)".red, "(@)".magenta, "(@)".yellow, "(@)".light_green, "(@)".blue]
+    @art = ["(\\", "(\\", "(\\", "(\\", "(\\"]
     get_blanks
     status
   end
@@ -31,14 +31,15 @@ class Game
     status
   end
 
-  def remove_flower(guess)
+  def remove_art(guess)
     unless @wrong.include?(guess)
-      @flowers.pop
+      @art.pop
       @wrong << guess
     end
     status
-    if @flowers.length == 0
-      puts "You ran out of flowers. Game over."
+    if @art.length == 0
+      puts "All the candles went out! The word was #{@answer}."
+      puts "Game over."
       exit
     end
   end
@@ -49,8 +50,11 @@ class Game
 
   def status
     puts " "
-    puts @flowers.join("")
-    puts "`| `| `| `| `|".green
+    puts @art.join("  ").yellow
+    puts (".".light_blue + "'".yellow + ". ".light_blue) * 5
+    puts "| | ".light_blue * 5
+    puts "| | ".light_blue * 5
+    puts "|_| ".light_blue * 5
     puts " "
     puts @blanks.join(" ")
     puts " "

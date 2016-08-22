@@ -20,23 +20,27 @@ end
 play = words[difficulty].sample
 
 word = Game.new(play)
-print "Please enter a letter. "
+print "Please enter a letter, or type exit to quit. "
 user_guess = gets.chomp.downcase
 
 until word.full?
+  if user_guess == "exit"
+      exit
+  end
+
   if word.answer.include?(user_guess) && word.all_letters(user_guess) == true
     word.fill_in(user_guess)
     if word.full?
       break
     end
-    print "Please enter another letter. "
+    print "You got a letter! Please enter another letter. "
     user_guess = gets.chomp.downcase
   elsif word.all_letters(user_guess) == false
-    print "Invalid entry. Please enter a letter."
+    print "Invalid entry. Please enter a letter. "
     user_guess = gets.chomp.downcase
   else
-    word.remove_flower(user_guess)
-    print "Please enter another letter. "
+    word.remove_art(user_guess)
+    print "Sorry, that letter is wrong. Please enter another letter. "
     user_guess = gets.chomp.downcase
   end
 end
