@@ -1,20 +1,8 @@
 require "colorize"
-
+# This class outputs the corresponding ASCII volcano depending on how many wrong guesses have been made in game
 class Volcano
 
-  # add to game directions: try to guess the correct letters of the secret word before the volcano erupts!
-
   def initialize(score)
-    # use case or if statement to return appropriate image
-
-    # art = volcano.new(points)
-    # case score
-    # when 5
-    #   print ...
-    # when 4
-    #   print ...
-    # ...
-    # end
     case score
     when  5
       puts "\n                /vvv\\"
