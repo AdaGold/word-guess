@@ -83,30 +83,33 @@ class GuessingGame
       puts " "
       puts "Guess a letter!"
       @guess = gets.chomp.to_s.upcase
-
-      if compare? == true
-        #ascii_art (doesnt change stays the same for num_wrong_guess)
-        ascii_art
-        letter_art_change
-        @letter_art.each do | i |
-          print i
-        end
-        puts " "
-        puts " "
-        puts "Yay! That is a correct letter."
-
+      if @wrong_guesses.include? @guess
+        puts "You've already guessed that."
       else
-        #ascii_art (changes corresponds to num_wrong_guess, looses flowers)
-        @num_wrong_guess += 1
-        ascii_art
-        @letter_art.each do | i |
-          print i
+        if compare? == true
+          #ascii_art (doesnt change stays the same for num_wrong_guess)
+          ascii_art
+          letter_art_change
+          @letter_art.each do | i |
+            print i
+          end
+          puts " "
+          puts " "
+          puts "Yay! That is a correct letter."
+
+        else
+          #ascii_art (changes corresponds to num_wrong_guess, looses flowers)
+          @num_wrong_guess += 1
+          ascii_art
+          @letter_art.each do | i |
+            print i
+          end
+          @wrong_guesses << @guess
+          puts " "
+          puts " "
+          puts "Sorry! That letter is wrong. You lost a flower."
+          puts "Here are your wrong guesses so far: " + @wrong_guesses.to_s
         end
-        @wrong_guesses << @guess
-        puts " "
-        puts " "
-        puts "Sorry! That letter is wrong. You lost a flower."
-        puts "Here are your wrong guesses so far: " + @wrong_guesses.to_s
       end
     game_over?
   end
