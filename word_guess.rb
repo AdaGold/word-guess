@@ -33,19 +33,29 @@ class WordGuess
 
     if @target_word_guess.include?(your_guess)
       @correct_guesses<<your_guess
+      @target_array_form.each_with_index do |char, index|
+          if your_guess == char
+              @dash_line[index].replace(char)
+          end
+      end
     else
       @incorrect_guesses<<your_guess
     end
+    print @dash_line
+    print @correct_guesses
   end
 
-  def done?
-    @target_array_form.each do |let|
-      if !@correct_guesses.include?(let)
-        return false
-      end
-    end
-    return true
-  end
+
+# will need to come back to this method, it's looping in a strange way right now...
+
+  # def done?
+  #   @target_array_form.each do |let|
+  #     if !@correct_guesses.include?(let)
+  #       return false
+  #     end
+  #   end
+  #   return true
+  # end
 
   def graphic
     puts "(@)(@)(@)(@)(@)\n,\\, \\, |,/, /,\n     _\\|/_\n    |_____|\n     |   |\n     |___|"
@@ -61,16 +71,18 @@ test = WordGuess.new
 puts "Welcome to Guess Our Words!"
 puts test.selection
 
-test.create_dash_line
-puts test.dash_line[0]
+puts "Please guess our word represented below by the dashed line. You can guess one letter at a time. You will have 5 incorrect guesses before the game is over. One 'petal' will be removed after each incorrect guess.\n\n\n"
 
+print test.create_dash_line
+
+puts "\n\n"
 test.graphic
 
 test.guess
-test.testing_guesses
+#test.testing_guesses
 
-until test.done? == true
-  test.guess
-end
-
-test.testing_guesses
+# until test.done? == true
+#   test.guess
+# end
+#
+# test.testing_guesses
