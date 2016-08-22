@@ -2,7 +2,7 @@ require_relative 'guess'
 require_relative 'art'
 
 guess = Guess.new("rubies")
-art = Art.new
+
 # Thinking we won't need this because .include? words on a simple string
 #word = "code"
 
@@ -41,7 +41,7 @@ while guess.wrong_guess_array.length < 5
   else
     guess.wrong_guess_array << user_guess
     puts guess.guessing_wrong
-    puts art.bad_guess(n)
+    # puts art.bad_guess(n)
     guess.check
     n += 1 #we like this
   end

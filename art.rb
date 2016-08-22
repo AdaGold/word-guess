@@ -1,10 +1,11 @@
+require 'colorize'
 class Art
   attr_accessor :win, :lose, :bad_guess
 
   def initialize
   end
 
-  def win
+  def win_art
     puts "   __
    AA   (Hooray!
   AAAA /  You win!)
@@ -12,29 +13,29 @@ class Art
 AAAAAAAA"
   end
 
-  def lose
+  def lose_art
     puts "      (*****)
      (****)
     (***)
    (**)
-   AA    (LOSER!)
+   AA    (LOSER!!!!!!)
   AAAA  /
  AAAAAA
-AAAAAAAA"
+AAAAAAAA".colorize(:red)
   end
 
   def bad_guess(guess_num)      # Should there be a check for winning or losing here??
     if guess_num == 1
       puts "  (__)
    AA
-  AAAA
- AAAAAA
+  AAAA    (5 guesses left!)
+ AAAAAA    /
 AAAAAAAA"
     elsif guess_num == 2
       puts "   (   )
   (__)
-   AA
-  AAAA
+   AA    (4 guesses left!)
+  AAAA   /
  AAAAAA
 AAAAAAAA"
   elsif guess_num == 3
@@ -42,8 +43,8 @@ AAAAAAAA"
    (   )
   (__)
    AA
-  AAAA
- AAAAAA
+  AAAA   (3 guesses left!)
+ AAAAAA  /
 AAAAAAAA"
   elsif guess_num == 4
     puts "     (       )
@@ -51,17 +52,17 @@ AAAAAAAA"
    (   )
   (__)
    AA
-  AAAA
- AAAAAA
+  AAAA  (2 guesses left!)
+ AAAAAA  /
 AAAAAAAA"
 else
-  puts "      (*****)
-     (****)
-    (***)
+  puts "      (    )
+     (    )
+    (****)
    (**)
-   AA    (LOSER!)
-  AAAA  /
- AAAAAA
+   AA
+  AAAA   (1 guess left...)
+ AAAAAA   /
 AAAAAAAA"
   end # ending if
 end # ending the method
