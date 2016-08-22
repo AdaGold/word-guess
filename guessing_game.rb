@@ -79,10 +79,7 @@ class GuessingGame
   end
 
   def special_character?
-    @guess.include?("!")||@guess.include?("?")||@guess.include?"(,)"
-
-    #elsif@guess.include?"."
-    #|| @guess.include?"," || @guess.include?"#" || @guess.include?":" || @guess.include?";" || @guess.include?"&"
+    @guess.include?("!")||@guess.include?("?")||@guess.include?(",")||@guess.include?(".")||@guess.include?(",")||@guess.include?("#")||@guess.include?(":")||@guess.include?(";")||@guess.include?("&")
   end
 
 
