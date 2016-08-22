@@ -24,6 +24,14 @@ class Answer #the Answer class stores the word the user is trying guess, and can
     end
   end
 
+  def check_winner
+    if @user_answer == @answer_array
+      print_user_answer
+      puts "YOU WON!"
+      exit
+    end
+  end
+
   def check_user_guess(user_guess)
     #This method takes in a string character from guess to check whether it exists in the answer_array.
     #If we have time to go back, we'll use an .each loop here to keep track of what position the correct guesses are in.
@@ -34,6 +42,7 @@ class Answer #the Answer class stores the word the user is trying guess, and can
           @user_answer[i] = letter
         end
       end
+      check_winner
     else
         incorrect_guess(user_guess)
         #@user_incorrect << user_guess
