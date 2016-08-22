@@ -40,6 +40,9 @@ class Guess
       puts @art.lose_art
       exit
     elsif win? == true
+      @right_guess_array.each do |i|
+        print "#{i.upcase}  "
+      end
       puts "\nYou win! The correct word was \"#{@word}\"!"
       puts @art.win_art
       exit
