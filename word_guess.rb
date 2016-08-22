@@ -1,4 +1,5 @@
 require_relative 'game'
+require 'colorize'
 
 words = ["popcorn", "licorice", "marshmallow", "spaghetti", "meatloaf"]
 
@@ -24,4 +25,4 @@ until word.full?
   end
 end
 
-puts "You win!"
+puts "You win!".blue.blink

@@ -5,7 +5,7 @@ class Game
         @answer = answer
         @blanks = []
         @wrong = []
-        @flowers = ["(@)", "(@)", "(@)", "(@)", "(@)"]
+        @flowers = ["(@)".red, "(@)".magenta, "(@)".yellow, "(@)".light_green, "(@)".blue]
         get_blanks
         status
     end
@@ -50,10 +50,10 @@ class Game
         def status
             puts " "
             puts @flowers.join("")
-            puts "`| `| `| `| `|"
+            puts "`| `| `| `| `|".green
             puts " "
             puts @blanks.join(" ")
             puts " "
-            puts "Wrong guesses: " + @wrong.join(", ")
+            puts "Wrong guesses: " + @wrong.join(", ").red
         end
     end
