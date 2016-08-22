@@ -105,7 +105,7 @@ class GuessingGame
         @wrong_guesses << @guess
         puts " "
         puts " "
-        puts "Sorry! That letter is wrong. You lost a baloon"
+        puts "Sorry! That letter is wrong. You lost a flower."
         puts "Here are your wrong guesses so far: " + @wrong_guesses.to_s
       end
     game_over?
