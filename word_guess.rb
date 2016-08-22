@@ -2,7 +2,7 @@ class WordGuess
   attr_accessor :words, :target_word_guess, :correct_guesses, :incorrect_guesses, :target_array_form, :dash_line, :petal_art
 
   def initialize
-    @words =  ["JOY", "SAD", "HAPPY", "FACE"]
+    @words =  ["SPAGHETTI", "STUDENDOUS", "HAPPY", "LINGUISTIC"]
     @target_word_guess = ""
     @target_array_form = nil
     @correct_guesses = []
@@ -76,28 +76,9 @@ class WordGuess
       guess
     end
     if @incorrect_guesses.length == 5
-      puts" Oops you lose, nice try!"
+      puts "Oops you lose, nice try!"
     elsif done? == true
       puts "Good job, you win!"
     end
   end
 end
-
-test = WordGuess.new
-
-puts "Welcome to Guess Our Words!"
-puts test.selection
-
-puts "Please guess our word represented below by the dashed line. You can guess one letter at a time. You will have 5 incorrect guesses before the game is over. One 'petal' will be removed after each incorrect guess.\n\n\n"
-
-print test.create_dash_line
-
-puts "\n\n"
-puts test.graphic
-
-test.guess
-
-test.conclusion
-
-
-# test.testing_guesses
