@@ -11,6 +11,7 @@ class Game
     @current_status = []
     @guessed_letters = []
     @outcome = nil
+    @valid = false
 
     (@word.length).times do
       @current_status << "_"
@@ -18,11 +19,24 @@ class Game
   end
 
   def guess
-    print "\nWhat letter do you guess? "
-    @guess = gets.chomp.upcase
+    until @valid
+      print "\nWhat letter do you guess? "
+      @guess = gets.chomp.upcase
+      valid_letter?
+    end
     @guessed_letters << @guess
     check_letter_guess(@guess)
-    # return @outcome
+    @valid = false
+  end
+
+  def valid_letter?
+    # @guessed_letters.include? @guess
+    if (@guess =~ /[A-Z]/) == 0 && !(@guessed_letters.include? @guess)
+      @valid = true
+    else
+      print "That's not a valid letter or you've already guessed this one. "
+      @valid = false
+    end
   end
 
   def check_letter_guess(guess)
@@ -32,27 +46,24 @@ class Game
         @current_status[i] = letter
         match = true
         if @current_status == @word_array
-          # puts "You guessed it!"
           @outcome = "win"
-          # exit? break?
         end
       end
     end
     if match == false
       @points -= 1
       if lose?
-        # puts "Game over. You didn't guess it :(. The secret word was #{ @word }"
         @outcome = "lose"
-        # exit? break?
       end
     end
   end
 
   def print_art
-    print "MYSTERY WORD: "
+    print "\nMYSTERY WORD: "
     @current_status.each do |letter|
       print letter + " "
     end
+    puts " "
     Volcano.new(@points)
     puts "You have #{@points} wrong guesses left."
     print "Guessed letters: "
@@ -70,9 +81,8 @@ end
 # creates a new round of the Game, with mystery word
 round = Game.new("hello")
 
-# prints the
+# prints starting status
 round.print_art
-
 
 until round.outcome != nil
   round.guess
