@@ -20,7 +20,7 @@ class Guess
   end
 
   def lose?
-    @wrong_guess_counter == 4 # NO IFs HERE :)
+    @wrong_guess_counter == 5 # NO IFs HERE :)
   end
 
   def check

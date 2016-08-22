@@ -45,13 +45,22 @@ AAAAAAAA"
   AAAA
  AAAAAA
 AAAAAAAA"
-  else
+  elsif guess_num == 4
     puts "     (       )
     (     )
    (   )
   (__)
    AA
   AAAA
+ AAAAAA
+AAAAAAAA"
+else
+  puts "      (*****)
+     (****)
+    (***)
+   (**)
+   AA    (LOSER!)
+  AAAA  /
  AAAAAA
 AAAAAAAA"
   end # ending if
