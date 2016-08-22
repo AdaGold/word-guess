@@ -1,7 +1,14 @@
-require_relative 'word_game'
-
+# require_relative 'word_game'
+# require_relative 'words'
+#
+# cat = Words.new(name: ["C", "A", "T"])
+# dog = Words.new(name: ["D", "O", "G"])
+#
 # new_game = WordGame.new()
-
+# new_game.add_words(cat)
+# new_game.add_words(dog)
+#
+# puts @words
 
 puts "Welcome to Word Guess Game!"
 puts "The rules are as follows:
@@ -25,9 +32,9 @@ bouquet = '
 print flower * chances
 print bouquet
 
-cat = ["C", "A", "T"]
-word = cat
-
+cat = %w(C A T)
+dog = %w(D O G)
+word = dog
 
 runtime = word.length + chances
 all_guesses = []
@@ -65,7 +72,7 @@ runtime.times do
       end
   else
     puts "YOU GUESSED A CORRECT LETTER!"
-    if all_guesses.include?("C") && all_guesses.include?("A") && all_guesses.include?("T")
+    if word.all? { |e| all_guesses.include?(e) }
       puts "You win!"
       puts "The word is: #{word}"
       exit
