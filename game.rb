@@ -2,8 +2,8 @@ class Game
   attr_accessor :word, :guessed_word, :remaining_guesses, :wrong_letters
 
   def initialize
-    @word = ["panda", "guinevere", "snowcone", "whimsical", "hardcode", "dragon",
-    "sunglasses"].sample
+    @word = "panda" #, "guinevere", "snowcone", "whimsical", "hardcode", "dragon",
+    #{}"sunglasses"].sample
     @guessed_word = ["_"] * @word.length
     @remaining_guesses = 5
     @wrong_letters = []
@@ -25,6 +25,16 @@ class Game
     return @guessed_word
   end
 
+  def full_word(word)
+    if word != @word
+      @remaining_guesses -=1
+      @wrong_letters << word
+    else
+      @guessed_word=word
+    end
+    return @guessed_word
+  end
+
   def display_progress
     display = ""
     @guessed_word.each do |char|
@@ -42,6 +52,7 @@ class Game
   end
 
   def flowers
+    puts
     case @remaining_guesses
 
     when 5
