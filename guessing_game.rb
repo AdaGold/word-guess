@@ -6,14 +6,19 @@ class GuessingGame
     @rand_answer = ["ZEBRA", "ROCKS", "JUMBO", "RHINO"].sample
     puts @rand_answer
     @answer = @rand_answer.chars
-    puts @answer[0] + @answer[1] + @answer[2] + @answer[3] + @answer[4]
-    puts @answer
+    #puts @answer[0] + @answer[1] + @answer[2] + @answer[3] + @answer[4]
+    #puts @answer
     @num_wrong_guess = 0
     @art = "(asci art)"
     @letter_art = ["_", "_", "_", "_", "_"]
     @wrong_guesses = []
     puts @art
-    puts @letter_art[0] + @letter_art[1] + @letter_art[2] + @letter_art[3] + @letter_art[4]
+
+    @letter_art.each_with_index do | i |
+      print i
+    end
+    puts " "
+    puts " "
 
   end
 
@@ -39,21 +44,15 @@ class GuessingGame
 
 
 
-
-
   def letter_art_change
-    if @guess == @answer[0]
-      @letter_art[0] = @answer[0]
-    elsif @guess == @answer[1]
-        @letter_art[1] = @answer[1]
-    elsif @guess == @answer[2]
-        @letter_art[2] = @answer[2]
-    elsif @guess == @answer[3]
-        @letter_art[3] = @answer[3]
-    elsif @guess == @answer[4]
-        @letter_art[4] = @answer[4]
+  num_of_letters = @letter_art.length
+    num_of_letters.times do |i|
+      if @guess == @answer[i]
+        @letter_art[i] = @answer[i]
+      else
+        i += 1
+      end
     end
-
   end
 
   def check_progress?
@@ -67,7 +66,7 @@ class GuessingGame
       exit
     elsif @num_wrong_guess == 4
       puts "You Lost.".colorize(:red)
-      puts "The correct word was " + @answer
+      puts "The correct word was: " + @rand_answer.colorize(:red)
       exit
     else
       method
@@ -76,7 +75,6 @@ class GuessingGame
 
 
   def method #to ask user
-    puts "called method"
       puts "Guess a letter!"
       @guess = gets.chomp.to_s.upcase
 
