@@ -19,6 +19,11 @@ class Guess
     @wrong_guess_counter += 1
   end
 
+def win?
+   right_guess_array == word_letter_array
+end
+
+
   def lose?
     @wrong_guess_counter == 5 # NO IFs HERE :)
   end
@@ -27,6 +32,9 @@ class Guess
     if lose? == true
       puts "You've guessed too many times without getting the word. Village dead."
       # art.lose #final art for losing should be here
+      exit
+    elsif win? == true
+      puts "You Win yay"
       exit
     end
   end
