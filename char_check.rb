@@ -16,7 +16,12 @@ class Char_Check
 
   def receive_input
     puts "Please enter a letter to guess the secret word!"
-    @char = gets.chomp.upcase
+    @char = gets.chomp
+    # working on input verification
+    if @char != /[a-zA-Z]/
+      puts ""
+    end
+
     return @char
   end
 
