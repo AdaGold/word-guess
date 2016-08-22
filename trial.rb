@@ -47,7 +47,7 @@ class Guess
 
 		if is_correct == true
 			if @chars.length == 0
-				puts "CONGRATULATIONS!"
+				puts "CONGRATULATIONS! The word was #{@answer}!"
 				exit
 			end
 			puts @anchor
@@ -197,7 +197,7 @@ class Guess
 
 			if @answer.include?(guess) == true
 				if @chars.include?(guess) == true
-					puts "Nice! You guessed correctly. The word was #{@answer}!"
+					puts "Nice! You guessed correctly."
 					@chars.delete(guess)
 				else
 					puts "You've already guess that letter before!"
