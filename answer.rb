@@ -1,4 +1,4 @@
-require_relative 'guess'
+#require_relative 'guess' We're not using this at the moment, might not need?
 
 class Answer #the Answer class stores the word the user is trying guess, and can return whether the guess is correct.
   attr_accessor :word, :word_array, :user_correct, :user_incorrect
@@ -6,7 +6,7 @@ class Answer #the Answer class stores the word the user is trying guess, and can
   def initialize(word)
     @word = word
     @word_array = word.split(//) #this is the array created out of word, split on each character.
-    @user_correct = []
+    @user_correct = [] #These might want to live outside of answer. 
     @user_incorrect = []
   end
 
