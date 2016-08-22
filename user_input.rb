@@ -28,6 +28,7 @@ print bouquet
 cat = ["C", "A", "T"]
 word = cat
 
+
 runtime = word.length + chances
 all_guesses = []
 runtime.times do
@@ -52,18 +53,24 @@ runtime.times do
   puts "You chose: #{user_guess[0]}"
   all_guesses << user_guess[0]
   puts "\n\nHere are your letters so far : #{all_guesses}\n\n"
-  if cat.include?(user_guess) == FALSE
+  if word.include?(user_guess) == FALSE
       chances -= 1
       puts "THAT IS INCORRECT. You lose a petal!\n\n"
-      puts chances
       puts flower * chances
 
 
       if chances == 0
         puts "\n\nYOU RAN OUT OF PETALS. YOU LOSE THE GAME\n\n\n"
+        puts "The word was: #{word}"
       end
   else
-     puts "YOU GUESSED A CORRECT LETTER!"
+    puts "YOU GUESSED A CORRECT LETTER!"
+    if all_guesses.include?("C") && all_guesses.include?("A") && all_guesses.include?("T")
+      puts "You win!"
+      puts "The word is: #{word}"
+      exit
+    end
+
   end
 
 
