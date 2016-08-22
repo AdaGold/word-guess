@@ -193,7 +193,8 @@ class Guess
 			end
 			guess = input[0, 1]
 			guesses << guess
-			puts guesses
+			puts "You've guessed #{guesses[0..(guesses.length - 1)]} so far."
+			puts "You just guessed #{guesses[-1]}."
 
 			if @answer.include?(guess) == true
 				if @chars.include?(guess) == true
