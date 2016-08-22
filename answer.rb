@@ -6,7 +6,7 @@ class Answer #the Answer class stores the word the user is trying guess, and can
   def initialize(word)
     @word = word
     @word_array = word.split(//) #this is the array created out of word, split on each character.
-    @user_correct = [] #These might want to live outside of answer. 
+    @user_correct = [] #These might want to live outside of answer.
     @user_incorrect = []
   end
 
@@ -42,5 +42,14 @@ class Answer #the Answer class stores the word the user is trying guess, and can
 
   def num_incorrect
     return @user_incorrect.length
+  end
+
+  def print_guesses
+    puts "You have already guessed:"
+    puts "#{ @user_correct } #{ @user_incorrect }"
+  end
+
+  def print_spaces
+     puts "_ " * @word_array.length
   end
 end
