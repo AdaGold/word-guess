@@ -38,7 +38,7 @@ class GameBoard
     end
   end
 
-  def print_dash_line(bad_letter_list)
+  def print_dash_line(bad_letter_list) #new argument
     print "Word: "
     @dash_array.each { |item| print item + " " }
     if bad_letter_list.length > 0

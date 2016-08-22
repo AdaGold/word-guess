@@ -40,13 +40,12 @@ class GamePlay
       @my_artwork.print_balloons(0) # game over banner
       exit
     elsif success_count == 0
-      #win!
-      @my_game_board.print_dash_line
+      @my_game_board.print_dash_line(@my_word_guess.bad_letters)
       puts "You win the game!"
       @my_artwork.print_win_graphic
       exit
     else
-      puts "Not a winner, what's up?"
+      puts "Not a winner, but game carried on, what's up?"
       exit
     end #if
 
