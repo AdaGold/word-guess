@@ -27,20 +27,14 @@ while guess.wrong_guess_array.length < 5
   print "\nGuess a letter: "
   user_input = gets.chomp.downcase
 
-  if guess.word_letter_array.include?(user_input)
-    if guess.word_letter_array.count(user_input) > 1
-      a_whole_new_array = []
-      a_whole_new_array = guess.word_letter_array.each_index.select { |i| guess.word_letter_array[i] == user_input } #copied off of stack overflow
-        a_whole_new_array.each do |override|
-          guess.right_guess_array[override] = user_input.downcase
-        end
-      guess.check
-    else #single letter
-      guess.guessing_right
-      guess_index = guess.word_letter_array.index(user_input)
-      guess.right_guess_array[guess_index] = user_input.downcase
-      guess.check
+  if
+  index_array = []
+    index_array = guess.word_letter_array.each_index.select { |i| guess.word_letter_array[i] == user_input } #copied off of stack overflow
+    index_array.each do |override|
+        guess.right_guess_array[override] = user_input.downcase
     end
+    guess.check
+
   else
     guess.wrong_guess_array << user_input
     puts "#{guess.guessing_wrong}\n\n"
