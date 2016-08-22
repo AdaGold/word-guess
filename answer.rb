@@ -20,8 +20,8 @@ class Answer
                     puts "Wrong guess!"
                     puts "Try again, loser!"
                     w = Ascii.new
-                    puts guess
                     w.wrong
+                    puts guess
                     guess = gets.chomp
                     max_wrong += 1
                 end
