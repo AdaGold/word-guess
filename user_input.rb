@@ -1,16 +1,6 @@
-# require_relative 'word_game'
-# require_relative 'words'
-#
-# cat = Words.new(name: ["C", "A", "T"])
-# dog = Words.new(name: ["D", "O", "G"])
-#
-# new_game = WordGame.new()
-# new_game.add_words(cat)
-# new_game.add_words(dog)
-#
-# puts @words
 
-puts "Welcome to Word Guess Game!"
+puts "Welcome to Word Guess Game!
+      The theme is: pets!"
 puts "The rules are as follows:
       Enter one letter at a time
       If correct, the letter will be filled in
@@ -33,10 +23,15 @@ print flower * chances
 print bouquet
 
 
-cat = %w(C A T)
-dog = %w(D O G)
-word = dog
-
+words = [ ["C", "A", "T"],
+          ["D", "O", "G"],
+          ["C", "H", "I", "N", "C", "H", "I", "L", "L", "A"],
+          ["F", "E", "R", "R", "E", "T"],
+          ["H", "A", "M", "S", "T", "E", "R"],
+          ["I", "G", "U", "A", "N", "A"],
+          ["S", "N", "A", "K", "E"]
+        ]
+word = words.shuffle[0]
 under_word = ["_"] * word.length
 
 
@@ -86,12 +81,5 @@ runtime.times do
       puts "The word is: #{word}"
       exit
     end
-
   end
-
-
 end
-
-
-
-# when wrong increases, chances decreases
