@@ -32,9 +32,13 @@ bouquet = '
 print flower * chances
 print bouquet
 
+
 cat = %w(C A T)
 dog = %w(D O G)
 word = dog
+
+under_word = ["_"] * word.length
+
 
 runtime = word.length + chances
 all_guesses = []
@@ -42,7 +46,7 @@ runtime.times do
   if chances == 0
     exit
   end
-
+  puts "Here is your word: #{under_word}"
   puts "Enter one letter: "
 
   user_guess = gets.chomp.upcase.to_s
@@ -63,7 +67,8 @@ runtime.times do
   if word.include?(user_guess) == FALSE
       chances -= 1
       puts "THAT IS INCORRECT. You lose a petal!\n\n"
-      puts flower * chances
+      print flower * chances
+      print bouquet
 
 
       if chances == 0
@@ -72,6 +77,10 @@ runtime.times do
       end
   else
     puts "YOU GUESSED A CORRECT LETTER!"
+    if word.include?(user_guess)
+      location = word.index(user_guess)
+      under_word[location] = user_guess
+    end
     if word.all? { |e| all_guesses.include?(e) }
       puts "You win!"
       puts "The word is: #{word}"
