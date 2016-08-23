@@ -9,51 +9,52 @@ class Char_Check
   def initialize
     @char = char
     @attempt = []
-    @hidden = ["_", "_", "_", "_"]
-    @secret_word = ["L", "O", "V", "E"]
+    @secret_word = ["L", "O", "V", "E", "L", "A", "C", "E"]
+    @hidden = ["_", "_", "_", "_", "_", "_", "_", "_"]
     @flower = Art.new
   end
 
   def receive_input
-    puts "Please enter a letter to guess the secret word!"
-    @char = gets.chomp
+    puts "\n\nPlease enter a letter to guess the secret word!"
+    @char = gets.chomp.upcase
     # working on input verification
-    if @char != /[a-zA-Z]/
-      puts ""
-    end
-
+    # if @char != /[a-zA-Z]/
+    #  puts ""
+    #end
     return @char
   end
 
-  # Known limitation: only works for words with unique letters
   def eval_input
-    letter_placement = ' '
-    if @secret_word.include?(@char)
-      @secret_word.each do |i|
-        if i == @char
-          letter_placement = @secret_word.index(char)
-          @hidden[letter_placement.to_i] = @char
-          letter_placement = ' '
-          @flower.show_art
+    if @secret_word.include?(@char) == false
+      wrong_guesses
+      puts "Secret Word: "
+      puts "#{ @hidden }"
+      puts "\nIncorrect guesses: #{ @attempt }"
 
-          if @attempt.empty?
-            puts "There are no incorrectly guessed letters."
-          else
-            puts "Incorrectly guessed letters: #{ @attempt }"
-          end
+    else
+      @secret_word.each do |char|
+        while @secret_word.include?(@char)
+          @letter_placement = @secret_word.index(@char)
+          @hidden[@letter_placement.to_i] = @char
+          # had been using delete_at method, which changed the secret_word index for later loops and caused errors
+          @secret_word[@letter_placement.to_i] = "-"
         end
       end
-    else
-      puts "That letter was not in the word."
-      wrong_guesses
-      puts "Incorrectly guessed letters: #{ @attempt }"
+      @flower.show_art
+      puts "Secret Word: "
+      puts "#{ @hidden }"
+      if @attempt.empty?
+        puts "\nThere are no incorrect guesses."
+      else
+        puts "\nIncorrect guesses: #{ @attempt }"
+      end
     end
-  puts "Secret Word: #{@hidden}"
+    #return winning?
   end
 
-def winning?
-  @secret_word == @hidden
-end
+  def winning?
+    @secret_word == ["-", "-", "-", "-", "-", "-", "-", "-"]
+  end
 
   def wrong_guesses
     @attempt.push(@char)
@@ -62,19 +63,21 @@ end
   end
 
   def play_game
-
     turn_count = 0
-    until turn_count == 6 || winning? == true
+    until @flower.counter == 0 || winning? == true
       receive_input
       eval_input
       turn_count += 1
     end
-     if winning?
-       puts "You won!"
-     else
-       puts "Gross you lost"
-       exit
-     end
-  end
 
+    if winning?
+      puts "You won!"
+      exit
+    else
+      @flower.remove_petal
+      @flower.show_art
+      puts "Gross you lost"
+      exit
+    end
+  end
 end
