@@ -2,7 +2,7 @@ class WordGuess
     attr_accessor :words, :target_word_guess, :correct_guesses, :incorrect_guesses, :target_array_form, :dash_line, :petal_art, :your_guess
 
     def initialize
-        @words =  ["SPAGHETTI", "STUDENDOUS", "HAPPY", "LINGUISTIC"]
+        @words = ["SPAGHETTI", "STUDENDOUS", "HAPPY", "LINGUISTIC"]
         @target_word_guess = ""
         @target_array_form = nil
         @correct_guesses = []
@@ -13,10 +13,10 @@ class WordGuess
     end
 
     def selection
-        index_choice = rand(@words.length  - 1)
+        index_choice = rand(@words.length - 1)
         @target_word_guess = @words[index_choice]
         @target_array_form = @target_word_guess.split("")
-        print @target_word_guess
+        return @target_word_guess
     end
 
     def create_dash_line
@@ -68,9 +68,9 @@ class WordGuess
             guess
         end
         if @incorrect_guesses.length == 5
-            puts"Oops you lose, nice try!"
+            puts"\nOops you lose, nice try!"
         elsif done? == true
-            puts "Good job, you win!"
+            puts "\nGood job, you win!"
         end
     end
 

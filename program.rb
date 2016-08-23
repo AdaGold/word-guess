@@ -2,7 +2,8 @@ require_relative 'word_guess'
 
 test = WordGuess.new
 
-puts "Welcome to Guess Our Words!"
+puts "\nWelcome to Guess Our Words!\n\n"
+test.selection
 # puts test.selection
 
 puts "Please guess our word represented below by the dashed line. You can guess one letter at a time. You will have 5 incorrect guesses before the game is over. One 'petal' will be removed after each incorrect guess.\n\n\n"
