@@ -4,8 +4,8 @@ class Word_guess
   attr_accessor :word, :board, :letters_guessed, :max_guesses
 
   def initialize
-    puts "new game initialized!"
-    @word = "PAPER"
+    # @word is now an array
+    @word = "PAPER".split("")
     @board = Array.new(word.length) { |i| i = "_" }
     # @art = './turtle.txt'
     # @art = Art.new
@@ -17,15 +17,20 @@ class Word_guess
     puts "Welcome to Cythina & Maria's Word Guessing Game"
     puts "-" * 60
     puts "Guess the word before the turtle disapears"
-    puts "Here are your previous guesses: #{@letters_guess.join(", ") rescue ""}"
-    # need to write the print_art method - will be in the class Art
-    # print_art
-    puts print_board
-    #set a local variable guess to get_guess (which returns the letter entered by user)
-    guess = get_guess
-    #have to send the local variable guess to method check_guess so this method has guess
-    check_guess(guess)
-    store_guess(guess)
+    until @max_guesses == 0 || @word == @board
+      #NEED TO ADD A LOOP TO KEEP PRINT BOARD - GET GUESS - ETC
+      puts "Here are your previous guesses: #{@letters_guessed.join(", ") rescue ""}"
+      # need to write the print_art method - will be in the class Art
+      # print_art
+      puts print_board
+      #set a local variable guess to get_guess (which returns the letter entered by user)
+      guess = get_guess
+      #have to send the local variable guess to method check_guess so this method has guess
+      check_guess(guess)
+      store_guess(guess)
+
+    end
+
   end
 
   def print_board
@@ -46,11 +51,11 @@ class Word_guess
     #board = [_ _ _ _ _] vs. word="PAPER" would word = [P, A, P, E, R]
     #array method .split(TELL ME WHERE TO SPLIT) - turns a string into an array
     #use replace if index of each matches
-    final_board = @word.split("")
+
     # if guess is included in final board / word
     #we need the guess to show up on board in the correct spot
-    final_board.each_index do |i|
-      if final_board[i] == guess
+    @word.each_index do |i|
+      if @word[i] == guess
         @board[i] = guess
       end
     end
