@@ -16,18 +16,25 @@ class Word_guess
 
 
   def main
+
     puts "Welcome to Cythina & Maria's Word Guessing Game"
     puts "-" * 60
     puts "Guess the word before the turtle disappears"
+
     until @max_wrong_guesses == 0 || @word == @board
       puts @art.print_art
       puts "Here are your previous guesses: #{@letters_guessed.join(", ") rescue ""}"
-      puts "You can only have #{@max_wrong_guesses} wrong guesses "
+      puts "You only have #{@max_wrong_guesses} wrong guesses left"
       puts print_board
       guess = get_guess
       check = check_guess?(guess)
       store_guess(guess)
       update_max_wrong_guesses(check)
+      puts "-" * 60
+    end
+
+    if @word == @board
+      puts "You got it! The word is #{@word.join}!"
     end
 
   end
@@ -68,7 +75,7 @@ class Word_guess
   def update_max_wrong_guesses(check)
     if check == false
       @max_wrong_guesses -= 1
-      # @art.update_art
+      @art.update_art(@max_wrong_guesses)
     end
   end
 
