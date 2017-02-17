@@ -1,4 +1,5 @@
-
+require_relative 'word_guess_art_class'
+require './word_guess_art_class.rb'
 
 class Word_guess
   attr_accessor :word, :board, :letters_guessed, :max_guesses
@@ -7,28 +8,26 @@ class Word_guess
     # @word is now an array
     @word = "PAPER".split("")
     @board = Array.new(word.length) { |i| i = "_" }
-    # @art = './turtle.txt'
-    # @art = Art.new
+    # @art variable is holding the art object - the text file and all the methods in the WordGuessArt class
+    @art = WordGuessArt.new
     @letters_guessed = [ ]
-    @max_guesses = 12
+    @max_wrong_guesses = 12
   end
+
 
   def main
     puts "Welcome to Cythina & Maria's Word Guessing Game"
     puts "-" * 60
-    puts "Guess the word before the turtle disapears"
-    until @max_guesses == 0 || @word == @board
-      #NEED TO ADD A LOOP TO KEEP PRINT BOARD - GET GUESS - ETC
+    puts "Guess the word before the turtle disappears"
+    until @max_wrong_guesses == 0 || @word == @board
+      puts @art.print_art
       puts "Here are your previous guesses: #{@letters_guessed.join(", ") rescue ""}"
-      # need to write the print_art method - will be in the class Art
-      # print_art
+      puts "You can only have #{@max_wrong_guesses} wrong guesses "
       puts print_board
-      #set a local variable guess to get_guess (which returns the letter entered by user)
       guess = get_guess
-      #have to send the local variable guess to method check_guess so this method has guess
-      check_guess(guess)
+      check = check_guess?(guess)
       store_guess(guess)
-
+      update_max_wrong_guesses(check)
     end
 
   end
@@ -46,26 +45,33 @@ class Word_guess
     @letters_guessed << guess
   end
 
-  def check_guess(guess)
-    # needs to check if the letter guessed matches a letter in @word
-    #board = [_ _ _ _ _] vs. word="PAPER" would word = [P, A, P, E, R]
-    #array method .split(TELL ME WHERE TO SPLIT) - turns a string into an array
-    #use replace if index of each matches
-
-    # if guess is included in final board / word
-    #we need the guess to show up on board in the correct spot
+#Check_guess? method will check the guess - if correct it updates the board and returns true - else it returns false and board stays the same
+#PROBLEM: if you return true in the if statement then you stop the each-index iteriation and repeats wont show up
+#SOLUTION: create local variable (define it before all iteriations and if/else statements so you can access it through the whole method - scope)
+#that varable gets set to true if the guess is correct - last part of this method returns true or false based on results
+  def check_guess?(guess)
+    results = ""
     @word.each_index do |i|
       if @word[i] == guess
         @board[i] = guess
+        results = true
       end
     end
-    print @board
-    puts
+
+    if results == true
+      return true
+    else
+      return false
+    end
   end
 
-end
+  def update_max_wrong_guesses(check)
+    if check == false
+      @max_wrong_guesses -= 1
+      # @art.update_art
+    end
+  end
 
-class Art
 end
 
 new_game = Word_guess.new
