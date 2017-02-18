@@ -6,7 +6,6 @@ class Word_guess
 
   def initialize
     @word = Faker::Food.ingredient.upcase.split("")
-    @word = "GRILLED CHEESE".split("")
     @board = Array.new(word.length) { |i| i = "_" }
     @art = WordGuessArt.new
     @letters_guessed = [ ]
