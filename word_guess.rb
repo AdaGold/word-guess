@@ -5,9 +5,7 @@ class Word_guess
   attr_accessor :word, :board, :letters_guessed, :max_guesses
 
   def initialize
-    # @word = Faker::Food.ingredient.upcase.split("")
-    # print @word
-    # puts
+    @word = Faker::Food.ingredient.upcase.split("")
     @word = "GRILLED CHEESE".split("")
     @board = Array.new(word.length) { |i| i = "_" }
     @art = WordGuessArt.new
