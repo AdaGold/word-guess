@@ -5,10 +5,10 @@ class Word_guess
   attr_accessor :word, :board, :letters_guessed, :max_guesses
 
   def initialize
-    @word = Faker::Food.ingredient.upcase.split("")
-    print @word
-    puts
-    # @word = "PAPER".split("")
+    # @word = Faker::Food.ingredient.upcase.split("")
+    # print @word
+    # puts
+    @word = "GRILLED CHEESE".split("")
     @board = Array.new(word.length) { |i| i = "_" }
     @art = WordGuessArt.new
     @letters_guessed = [ ]
@@ -20,11 +20,12 @@ class Word_guess
     puts "Welcome to Cythina & Maria's Word Guessing Game"
     puts "-" * 60
     puts "Guess the word before the turtle disappears"
-    
+
     until @max_wrong_guesses == 0 || @word == @board
       puts @art.print_art
       puts "Here are your previous guesses: #{@letters_guessed.join(", ") rescue ""}"
       puts "You only have #{@max_wrong_guesses} wrong guesses left"
+      check_for_spaces
       puts print_board
       guess = get_guess
       check = check_guess?(guess)
@@ -37,6 +38,14 @@ class Word_guess
       puts "You got it! The word is #{@word.join}!"
     else
       puts "Sorry you lose - the word was #{@word.join}"
+    end
+  end
+  #
+  def check_for_spaces()
+    @word.each_index do |i|
+      if @word[i] == " "
+        @board[i] = " "
+      end
     end
   end
 
