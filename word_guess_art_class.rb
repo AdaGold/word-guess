@@ -7,7 +7,7 @@ class WordGuessArt
   def print_art
     File.open(@art_file) do |f|
       f.each_line do |line|
-        print line
+        puts line
       end
     end
   end
@@ -38,7 +38,6 @@ class WordGuessArt
     when 1
       @art_file = './turtle12.txt'
     end
-
   end
 
 end

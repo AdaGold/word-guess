@@ -1,14 +1,15 @@
 require_relative 'word_guess_art_class'
-require './word_guess_art_class.rb'
+require 'faker'
 
 class Word_guess
   attr_accessor :word, :board, :letters_guessed, :max_guesses
 
   def initialize
-    # @word is now an array
-    @word = "PAPER".split("")
+    @word = Faker::Food.ingredient.upcase.split("")
+    print @word
+    puts
+    # @word = "PAPER".split("")
     @board = Array.new(word.length) { |i| i = "_" }
-    # @art variable is holding the art object - the text file and all the methods in the WordGuessArt class
     @art = WordGuessArt.new
     @letters_guessed = [ ]
     @max_wrong_guesses = 12
@@ -16,11 +17,10 @@ class Word_guess
 
 
   def main
-
     puts "Welcome to Cythina & Maria's Word Guessing Game"
     puts "-" * 60
     puts "Guess the word before the turtle disappears"
-
+    
     until @max_wrong_guesses == 0 || @word == @board
       puts @art.print_art
       puts "Here are your previous guesses: #{@letters_guessed.join(", ") rescue ""}"
@@ -35,8 +35,9 @@ class Word_guess
 
     if @word == @board
       puts "You got it! The word is #{@word.join}!"
+    else
+      puts "Sorry you lose - the word was #{@word.join}"
     end
-
   end
 
   def print_board
