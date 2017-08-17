@@ -45,20 +45,41 @@ class Word
   end
 
   def check_if_in_word(letter)
+    @letters_guesses << letter
     if @word_array.include?(letter)
       index = @word_array.each_index.select{|i| @word_array[i] == letter}
-      puts index
       index.each do |value|
         @dash_array[value] = letter
-        puts @dash_array
         return @dash_array
       end
     else
-      puts "no"
-      @letters_guesses << letter
       @remaining_guesses -= 1
     end
   end#check_if_in_word
+
+  def user_display
+    win?
+    lose?
+
+    return @dash_array.join(' '), "You have #{@remaining_guesses} remaining guesses.", "Letters you have guessed: #{@letters_guesses.join(' ')}"
+    # ASCII-art
+    # case statement for number of guesses left to change art
+  end
+
+  private
+
+  def win?
+    if @dash_array == @word_array
+      return "You win!" #Add ASCII-art rainbows
+      exit
+    end
+  end
+
+  def lose?
+    if @remaining_guesses == 0
+      return "You lose" #Add ASCII-art sad
+    end
+  end
 
 
 end
@@ -70,11 +91,14 @@ sample_word = Word.new(random_words.sample)
 
 #Getting a letter from the user
 #Still need to do varification that is is a letter and that it has not already been guessed
-puts "Please enter a letter"
-  guessed_letter = gets.chomp
 
-test = sample_word.check_if_in_word(guessed_letter)
-# puts test
+# 5.times do
+  puts "Please enter a letter"
+    guessed_letter = gets.chomp
+
+  test = sample_word.check_if_in_word(guessed_letter)
+  # puts test
+  puts sample_word.user_display
 
 
 
