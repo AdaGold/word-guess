@@ -39,7 +39,7 @@ class Word
   def initialize(word)
     @word = word
     @word_array = @word.split(//)
-    @dash_array = (("-") * @word_array.length).split
+    @dash_array = (("-") * @word_array.length).split(//)
     @remaining_guesses = 5
     @letters_guesses = []
   end
@@ -47,13 +47,16 @@ class Word
   def check_if_in_word(letter)
     if @word_array.include?(letter)
       index = @word_array.each_index.select{|i| @word_array[i] == letter}
+      puts index
       index.each do |value|
         @dash_array[value] = letter
+        puts @dash_array
         return @dash_array
       end
-
     else
       puts "no"
+      @letters_guesses << letter
+      @remaining_guesses -= 1
     end
   end#check_if_in_word
 
@@ -70,9 +73,8 @@ sample_word = Word.new(random_words.sample)
 puts "Please enter a letter"
   guessed_letter = gets.chomp
 
-puts sample_word.dash_array.class
 test = sample_word.check_if_in_word(guessed_letter)
-puts test
+# puts test
 
 
 
