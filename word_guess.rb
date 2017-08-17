@@ -35,16 +35,48 @@
 # puts words
 
 class Word
-  attr_reader :word, :word_array
+  attr_reader :word, :word_array, :dash_array
   def initialize(word)
     @word = word
     @word_array = @word.split(//)
+    @dash_array = (("-") * @word_array.length).split
+    @remaining_guesses = 5
+    @letters_guesses = []
   end
+
+  def check_if_in_word(letter)
+    if @word_array.include?(letter)
+      index = @word_array.each_index.select{|i| @word_array[i] == letter}
+      index.each do |value|
+        @dash_array[value] = letter
+        return @dash_array
+      end
+
+    else
+      puts "no"
+    end
+  end#check_if_in_word
+
+
 end
 
-random_words =["watch", "computer", "eraser", "desk"]
-
+#Generating a word for the user to guess
+#Need to add in more words later
+random_words =["watch"]
 sample_word = Word.new(random_words.sample)
 
-puts sample_word.word
-puts sample_word.word_array
+#Getting a letter from the user
+#Still need to do varification that is is a letter and that it has not already been guessed
+puts "Please enter a letter"
+  guessed_letter = gets.chomp
+
+puts sample_word.dash_array.class
+test = sample_word.check_if_in_word(guessed_letter)
+puts test
+
+
+
+
+# puts sample_word.word
+# puts sample_word.word_array
+# puts sample_word.dash_array
