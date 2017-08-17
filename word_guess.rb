@@ -10,12 +10,12 @@
 #checking if letter is in word - appropriate reponce if it is in word or not (modify word displayed if it is, decrease number of guesses if it isn't)
 #removing the dashes if the letter is in the word
 #Keep track of how many guesses are left
-#Remove letter from word when guessed
-#Remove letter from alphabet array if it is guessed
+
 #validating user input
     #verifying user input is one letter
     #Display letters that have already been guessed (create an array to add guessed letter to, and check that)
 #Changing ASCII-art based on number of wrong guesses
+
 #A match method to guess if dash array now equals letter array
 #lose method - when guessing have been decreased to zero (method that counts guesses?)
 
@@ -78,6 +78,7 @@ class Word
   def lose?
     if @remaining_guesses == 0
       return "You lose" #Add ASCII-art sad
+      exit
     end
   end
 
@@ -86,21 +87,25 @@ end
 
 #Generating a word for the user to guess
 #Need to add in more words later
-random_words =["watch"]
+random_words =["WATCH"]
 sample_word = Word.new(random_words.sample)
 
 #Getting a letter from the user
 #Still need to do varification that is is a letter and that it has not already been guessed
 
-# 5.times do
-  puts "Please enter a letter"
-    guessed_letter = gets.chomp
+puts "Please enter a letter: "
+  user_input = gets.chomp.upcase
 
-  test = sample_word.check_if_in_word(guessed_letter)
-  # puts test
-  puts sample_word.user_display
+#verify user input
+until ((user_input.length == 1) && (/[\d]/.match(user_input) == nil))
+  puts "Please enter a letter: "
+  user_input = gets.chomp.upcase
+end
 
 
+test = sample_word.check_if_in_word(user_input)
+# puts test
+puts sample_word.user_display
 
 
 # puts sample_word.word
