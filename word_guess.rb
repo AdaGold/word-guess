@@ -35,7 +35,7 @@
 # puts words
 
 class Word
-  attr_reader :word, :word_array, :dash_array
+  attr_reader :word, :word_array, :dash_array, :letters_guesses
   def initialize(word)
     @word = word
     @word_array = @word.split(//)
@@ -97,11 +97,10 @@ puts "Please enter a letter: "
   user_input = gets.chomp.upcase
 
 #verify user input
-until ((user_input.length == 1) && (/[\d]/.match(user_input) == nil))
+until ((user_input.length == 1) && (/[\d]/.match(user_input) == nil)) && !(sample_word.letters_guesses.include?(user_input))
   puts "Please enter a letter: "
   user_input = gets.chomp.upcase
 end
-
 
 test = sample_word.check_if_in_word(user_input)
 # puts test
