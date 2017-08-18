@@ -1,4 +1,4 @@
-#Testing how push changes work 
+
 
 #######List of nouns ##################################################
 # generated word
@@ -34,7 +34,7 @@
 
 
 
-require_relative 'word_guess_acii'
+require_relative 'word_guess_ascii'
 require 'colorize'
 class Word
   attr_reader :word, :word_array, :dash_array, :letters_guesses
@@ -62,7 +62,7 @@ class Word
   def user_display
     win
     lose
-    puts  "Word you need to guess: #{@dash_array.join(' ')}".colorize(:blue), "Letters you have guessed: #{@letters_guesses.join(' ')}".colorize(:purple), "You have #{@remaining_guesses} remaining guesses.".colorize(:green)
+    puts  "\n\nWord you need to guess: \n\n#{@dash_array.join(' ')}".colorize(:blue), "\nLetters you have guessed: #{@letters_guesses.join(' ')}".colorize(:yellow), "You have #{@remaining_guesses} remaining guesses.".colorize(:green)
     case @remaining_guesses
     when 5
       puts five
@@ -84,7 +84,7 @@ class Word
 
   def win
     if @dash_array == @word_array
-      puts "\nYou won!"
+      puts "\n\nYou won!\n".colorize(:blue)
       puts you_win
      exit #Add ASCII-art rainbows,
     end
@@ -92,7 +92,7 @@ class Word
 
   def lose
     if @remaining_guesses == 0
-      puts "\nYou lost"
+      puts "\n\nYou lost\n".colorize(:red)
       puts you_lose
        exit  #Add ASCII-art sad
     end
@@ -104,14 +104,32 @@ end
 
 #Generating a word for the user to guess
 #Need to add in more words later
-random_words =["WATCH", "TABLE", "CHAIR", "COMPUTER"]
-sample_word = Word.new(random_words.sample)
+random_words_easy =["WATCH", "TABLE", "CHAIR", "COMPUTER"]
+random_words_hard = ["BANDWAGON", "THRIFTLESS", "WHIZZING", "NYMPH"]
+
+
+
 
 #Getting a letter from the user
 #Still need to do varification that is is a letter and that it has not already been guessed
+puts "Welcome to the word-guess game!".colorize(:blue)
+puts "Would you like to play the easy version or the hard version?".colorize(:blue)
+  user_version = gets.chomp.downcase
+
+until user_version == "easy" || user_version == "hard"
+  puts "Please enter 'easy' or 'hard'! Thanks!"
+  user_version = gets.chomp.downcase
+end
+
+case user_version
+when "easy"
+  sample_word = Word.new(random_words_easy.sample)
+when "hard"
+  sample_word = Word.new(random_words_hard.sample)
+end
+
 loop do
-puts "Welcome to the word-guess game!"
-puts "Please enter a letter: "
+puts "Please enter a letter: ".colorize(:blue)
   user_input = gets.chomp.upcase
 
 #Defines what special characters are
@@ -121,15 +139,15 @@ puts "Please enter a letter: "
 #verify user input
 until ((user_input.length == 1) && (/[\d]/.match(user_input) == nil)) && !(sample_word.letters_guesses.include?(user_input))
   if !(/[\d]/.match(user_input) == nil) && user_input.to_i.to_s == user_input
-    puts "No numbers!"
+    puts "No numbers! Please enter a letter!".colorize(:blue)
   elsif user_input.length > 1 && !(/[\d]/.match(user_input) == nil)
-    puts "Please enter a single letter with no numnbers!"
+    puts "Please enter a single letter with no numnbers!".colorize(:blue)
   elsif user_input.length > 1 && /[\d]/.match(user_input) == nil
-    puts "Please enter a single letter at a time!"
+    puts "Please enter a single letter at a time!".colorize(:blue)
   elsif sample_word.letters_guesses.include?(user_input)
-    puts "You already guessed that letter! Please enter a different letter!"
+    puts "You already guessed that letter! Please enter a different letter!".colorize(:blue)
   elsif !(/[\d]/.match(user_input) == nil)
-    puts "Please don't enter a number! Enter a letter!"
+    puts "Please don't enter a number! Enter a letter!".colorize(:blue)
   end
   user_input = gets.chomp.upcase
 end
