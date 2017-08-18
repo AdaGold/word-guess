@@ -156,21 +156,43 @@ end
       puts "Please enter a letter: ".colorize(:blue)
       user_input = gets.chomp.upcase
 
+      #check if user_input includes any special characters
+      special = "?<>',?[]}{=-)(*&^%$#`~{}!" #NEW
+      regex = /[#{special.gsub(/./){|char| "\\#{char}"}}]/
+
       #verify user input is a single letter
-      until ((user_input.length == 1) && (/[\d]/.match(user_input) == nil)) && !(sample_word.letters_guesses.include?(user_input))
-        if !(/[\d]/.match(user_input) == nil) && user_input.to_i.to_s == user_input
-          puts "No numbers! Please enter a letter!".colorize(:red)
-        elsif user_input.length > 1 && !(/[\d]/.match(user_input) == nil)
-          puts "Please enter a single letter with no numnbers!".colorize(:red)
-        elsif user_input.length > 1 && /[\d]/.match(user_input) == nil
-          puts "Please enter a single letter at a time!".colorize(:red)
-        elsif sample_word.letters_guesses.include?(user_input)
-          puts "You already guessed that letter! Please enter a different letter!".colorize(:blue)
-        elsif !(/[\d]/.match(user_input) == nil)
-          puts "Please don't enter a number! Enter a letter!".colorize(:red)
-        end #if/else
-        user_input = gets.chomp.upcase
-      end #untill loop
+     until ((user_input.length == 1) && (/[\d]/.match(user_input) == nil)) && !(sample_word.letters_guesses.include?(user_input)) &&    !(user_input =~ regex)
+       if !(/[\d]/.match(user_input) == nil) && user_input.to_i.to_s == user_input
+         puts "No numbers! Please enter a letter:".colorize(:red)
+       elsif user_input.length > 1 && !(/[\d]/.match(user_input) == nil)
+         puts "Please enter a single letter with no numnbers:".colorize(:red)
+       elsif user_input.length > 1 && /[\d]/.match(user_input) == nil
+         puts "Please enter a single letter at a time:".colorize(:red)
+       elsif sample_word.letters_guesses.include?(user_input)
+         puts "You already guessed that letter! Please enter a different letter: ".colorize(:blue)
+       elsif !(/[\d]/.match(user_input) == nil)
+         puts "Please don't enter a number! Enter a letter!".colorize(:red)
+       elsif user_input =~ regex #NEW
+         puts "Please don't enter any other characters other than letter:".colorize(:red)
+       end #if/else
+       user_input = gets.chomp.upcase
+     end #untill loop
+     
+      # #verify user input is a single letter
+      # until ((user_input.length == 1) && (/[\d]/.match(user_input) == nil)) && !(sample_word.letters_guesses.include?(user_input))
+      #   if !(/[\d]/.match(user_input) == nil) && user_input.to_i.to_s == user_input
+      #     puts "No numbers! Please enter a letter!".colorize(:red)
+      #   elsif user_input.length > 1 && !(/[\d]/.match(user_input) == nil)
+      #     puts "Please enter a single letter with no numnbers!".colorize(:red)
+      #   elsif user_input.length > 1 && /[\d]/.match(user_input) == nil
+      #     puts "Please enter a single letter at a time!".colorize(:red)
+      #   elsif sample_word.letters_guesses.include?(user_input)
+      #     puts "You already guessed that letter! Please enter a different letter!".colorize(:blue)
+      #   elsif !(/[\d]/.match(user_input) == nil)
+      #     puts "Please don't enter a number! Enter a letter!".colorize(:red)
+      #   end #if/else
+      #   user_input = gets.chomp.upcase
+      # end #untill loop
 
       #Check if letter is in @word, and change @dash_array or @remaining_guesses acordingly
       sample_word.check_if_in_word(user_input)
@@ -178,11 +200,12 @@ end
       #Displays the dashed word with the correctly guessed letters filled in, how many guessing you have left, and what letters you have guessed thus far
       puts sample_word.user_display
 
-    #elsif runs if the user chose to guess what the word is 
+    #elsif runs if the user chose to guess what the word is
     elsif choice == "word"
       puts "Please enter the word you want to guess:".colorize(:blue)
       word_guess = gets.chomp.upcase
       guess_array = word_guess.split(//)
       sample_word.guess_right_word(guess_array)
+      puts sample_word.user_display
     end #if/else
   end #loop
