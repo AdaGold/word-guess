@@ -89,7 +89,6 @@ end
 
 
 
-puts five
 
 # hangman_full = <<'LETS_MAKE_THIS_WORK'
 # | .__________))______|
